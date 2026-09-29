@@ -1,0 +1,3557 @@
+{
+  "cases": [
+    {
+      "id": "blocklistSubscribersQuery:blocklistSubscribersQuery",
+      "operationId": "blocklistSubscribersQuery",
+      "methodName": "blocklistSubscribersQuery",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "query": "query",
+        "ids": [
+          1
+        ],
+        "action": "add",
+        "targetListIds": 1,
+        "status": "confirmed"
+      },
+      "argumentOrder": [
+        "query",
+        "ids",
+        "action",
+        "targetListIds",
+        "status"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "blocklistSubscribersQuery:blocklistSubscribersQueryText",
+      "operationId": "blocklistSubscribersQuery",
+      "methodName": "blocklistSubscribersQueryText",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "body": "string"
+      },
+      "argumentOrder": [
+        "body"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "createCampaign:createCampaign",
+      "operationId": "createCampaign",
+      "methodName": "createCampaign",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "name": "Example Name",
+        "subject": "subject",
+        "lists": [
+          1
+        ],
+        "fromEmail": "user@example.com",
+        "contentType": "content_type",
+        "messenger": "messenger",
+        "type": "type",
+        "tags": [
+          "tags"
+        ],
+        "sendLater": false,
+        "sendAt": {
+          "headers": [
+            {}
+          ],
+          "template_id": 1
+        }
+      },
+      "argumentOrder": [
+        "name",
+        "subject",
+        "lists",
+        "fromEmail",
+        "contentType",
+        "messenger",
+        "type",
+        "tags",
+        "sendLater",
+        "sendAt"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "name": "Example Name",
+            "subject": "subject",
+            "lists": [
+              1
+            ],
+            "from_email": "user@example.com",
+            "messenger": "messenger",
+            "type": "type",
+            "tags": [
+              "tags"
+            ],
+            "send_later": false,
+            "send_at": {},
+            "headers": [
+              {}
+            ],
+            "template_id": 1,
+            "content_type": "content_type",
+            "body": "body",
+            "altbody": "altbody",
+            "archive": false,
+            "archive_template_id": 1,
+            "archive_meta": {}
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "createCampaignContentById:createCampaignContentById",
+      "operationId": "createCampaignContentById",
+      "methodName": "createCampaignContentById",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1,
+        "id_2": 1,
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-01T00:00:00Z",
+        "campaignId": 1,
+        "views": 1,
+        "clicks": 1,
+        "lists": [
+          {
+            "id": 1,
+            "name": "Example Name"
+          }
+        ],
+        "startedAt": "2024-01-01T00:00:00Z",
+        "toSend": 1,
+        "sent": 1,
+        "uuid": "uu-1",
+        "type": "regular",
+        "name": "Example Name",
+        "subject": "subject",
+        "fromEmail": "user@example.com",
+        "body": "sample",
+        "sendAt": "2024-01-01T00:00:00Z",
+        "status": "active",
+        "contentType": "richtext",
+        "tags": [
+          "tags"
+        ],
+        "templateId": 1,
+        "messenger": "messenger",
+        "from": "from",
+        "to": "to"
+      },
+      "argumentOrder": [
+        "id",
+        "id_2",
+        "createdAt",
+        "updatedAt",
+        "campaignId",
+        "views",
+        "clicks",
+        "lists",
+        "startedAt",
+        "toSend",
+        "sent",
+        "uuid",
+        "type",
+        "name",
+        "subject",
+        "fromEmail",
+        "body",
+        "sendAt",
+        "status",
+        "contentType",
+        "tags",
+        "templateId",
+        "messenger",
+        "from",
+        "to"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": "data"
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "createList:createList",
+      "operationId": "createList",
+      "methodName": "createList",
+      "namespace": [
+        "lists"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Lists",
+      "arguments": {
+        "name": "Example Name",
+        "type": "public",
+        "optin": "single",
+        "tags": [
+          "tags"
+        ],
+        "description": "example text"
+      },
+      "argumentOrder": [
+        "name",
+        "type",
+        "optin",
+        "tags",
+        "description"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "uuid": "uu-1",
+            "name": "Example Name",
+            "type": "type",
+            "optin": "optin",
+            "tags": [
+              "tags"
+            ],
+            "subscriber_count": 1,
+            "description": "example text"
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "createSubscriber:createSubscriber",
+      "operationId": "createSubscriber",
+      "methodName": "createSubscriber",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "email": "user@example.com",
+        "name": "Example Name",
+        "status": "active",
+        "lists": [
+          1
+        ],
+        "listUuids": [
+          "list_uuids"
+        ],
+        "preconfirmSubscriptions": false,
+        "attribs": {}
+      },
+      "argumentOrder": [
+        "email",
+        "name",
+        "status",
+        "lists",
+        "listUuids",
+        "preconfirmSubscriptions",
+        "attribs"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "uuid": "uu-1",
+            "email": "user@example.com",
+            "name": "Example Name",
+            "attribs": {},
+            "status": "active",
+            "lists": [
+              {
+                "subscription_status": "active",
+                "id": 1,
+                "uuid": "uu-1",
+                "name": "Example Name",
+                "type": "type",
+                "tags": [
+                  "tags"
+                ],
+                "created_at": "2024-01-01T00:00:00Z",
+                "updated_at": "2024-01-01T00:00:00Z"
+              }
+            ]
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "createTemplate:createTemplate",
+      "operationId": "createTemplate",
+      "methodName": "createTemplate",
+      "namespace": [
+        "templates"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Templates",
+      "arguments": {
+        "name": "Example Name",
+        "type": "campaign",
+        "body": "sample",
+        "subject": "subject",
+        "bodySource": "body_source"
+      },
+      "argumentOrder": [
+        "name",
+        "type",
+        "body",
+        "subject",
+        "bodySource"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "name": "Example Name",
+            "body": "body",
+            "body_source": "body_source",
+            "subject": "subject",
+            "type": "type",
+            "is_default": false
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteBounceById:deleteBounceById",
+      "operationId": "deleteBounceById",
+      "methodName": "deleteBounceById",
+      "namespace": [
+        "bounces"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Bounces",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteBounces:deleteBounces",
+      "operationId": "deleteBounces",
+      "methodName": "deleteBounces",
+      "namespace": [
+        "bounces"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Bounces",
+      "arguments": {
+        "all": false,
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "all",
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteCampaignAnalyticsByType:deleteCampaignAnalyticsByType",
+      "operationId": "deleteCampaignAnalyticsByType",
+      "methodName": "deleteCampaignAnalyticsByType",
+      "namespace": [
+        "maintenance"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Maintenance",
+      "arguments": {
+        "type": "type",
+        "beforeDate": "2024-01-01"
+      },
+      "argumentOrder": [
+        "type",
+        "beforeDate"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteCampaignById:deleteCampaignById",
+      "operationId": "deleteCampaignById",
+      "methodName": "deleteCampaignById",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteGCSubscribers:deleteGcSubscribers",
+      "operationId": "deleteGCSubscribers",
+      "methodName": "deleteGcSubscribers",
+      "namespace": [
+        "maintenance"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Maintenance",
+      "arguments": {
+        "type": "type"
+      },
+      "argumentOrder": [
+        "type"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "count": 1
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteListById:deleteListById",
+      "operationId": "deleteListById",
+      "methodName": "deleteListById",
+      "namespace": [
+        "lists"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Lists",
+      "arguments": {
+        "listId": 1
+      },
+      "argumentOrder": [
+        "listId"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteMediaById:deleteMediaById",
+      "operationId": "deleteMediaById",
+      "methodName": "deleteMediaById",
+      "namespace": [
+        "media"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Media",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteSubscriberBouncesById:deleteSubscriberBouncesById",
+      "operationId": "deleteSubscriberBouncesById",
+      "methodName": "deleteSubscriberBouncesById",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteSubscriberById:deleteSubscriberById",
+      "operationId": "deleteSubscriberById",
+      "methodName": "deleteSubscriberById",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteSubscriberByList:deleteSubscriberByList",
+      "operationId": "deleteSubscriberByList",
+      "methodName": "deleteSubscriberByList",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteSubscriberByQuery:deleteSubscriberByQuery",
+      "operationId": "deleteSubscriberByQuery",
+      "methodName": "deleteSubscriberByQuery",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "query": "query",
+        "ids": [
+          1
+        ],
+        "action": "add",
+        "targetListIds": 1,
+        "status": "confirmed"
+      },
+      "argumentOrder": [
+        "query",
+        "ids",
+        "action",
+        "targetListIds",
+        "status"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteSubscriberByQuery:deleteSubscriberByQueryText",
+      "operationId": "deleteSubscriberByQuery",
+      "methodName": "deleteSubscriberByQueryText",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "body": "string"
+      },
+      "argumentOrder": [
+        "body"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteTemplateById:deleteTemplateById",
+      "operationId": "deleteTemplateById",
+      "methodName": "deleteTemplateById",
+      "namespace": [
+        "templates"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Templates",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "deleteUnconfirmedSubscriptions:deleteUnconfirmedSubscriptions",
+      "operationId": "deleteUnconfirmedSubscriptions",
+      "methodName": "deleteUnconfirmedSubscriptions",
+      "namespace": [
+        "maintenance"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Maintenance",
+      "arguments": {
+        "beforeDate": "2024-01-01"
+      },
+      "argumentOrder": [
+        "beforeDate"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "count": 1
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "exportSubscriberDataByID:exportSubscriberDataById",
+      "operationId": "exportSubscriberDataByID",
+      "methodName": "exportSubscriberDataById",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "email": "user@example.com",
+          "profile": [
+            {
+              "id": 1,
+              "uuid": "uu-1",
+              "email": "user@example.com",
+              "name": "Example Name",
+              "attribs": {},
+              "status": "active",
+              "created_at": "2024-01-01T00:00:00Z",
+              "updated_at": "2024-01-01T00:00:00Z"
+            }
+          ],
+          "subscriptions": [
+            {
+              "subscription_status": "active",
+              "name": "Example Name",
+              "type": "type",
+              "created_at": "2024-01-01T00:00:00Z"
+            }
+          ],
+          "campaign_views": [
+            {}
+          ],
+          "link_clicks": [
+            {}
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getBounceById:getBounceById",
+      "operationId": "getBounceById",
+      "methodName": "getBounceById",
+      "namespace": [
+        "bounces"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Bounces",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "results": [
+              {
+                "id": 1,
+                "type": "type",
+                "source": "source",
+                "meta": {},
+                "created_at": "2024-01-01T00:00:00Z",
+                "email": "user@example.com",
+                "subscriber_uuid": "subscriber_uu-1",
+                "subscriber_id": 1,
+                "campaign": {
+                  "id": 1,
+                  "name": "Example Name"
+                },
+                "campaign_uuid": "campaign_uu-1",
+                "total": 100
+              }
+            ]
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getBounces:getBounces",
+      "operationId": "getBounces",
+      "methodName": "getBounces",
+      "namespace": [
+        "bounces"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Bounces",
+      "arguments": {
+        "campaignId": 1,
+        "page": 30,
+        "perPage": 30,
+        "source": "source",
+        "orderBy": "email",
+        "order": "asc"
+      },
+      "argumentOrder": [
+        "campaignId",
+        "page",
+        "perPage",
+        "source",
+        "orderBy",
+        "order"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "results": [
+              {
+                "results": [
+                  {
+                    "id": 1,
+                    "type": "type",
+                    "source": "source",
+                    "meta": {},
+                    "created_at": "2024-01-01T00:00:00Z",
+                    "email": "user@example.com",
+                    "subscriber_uuid": "subscriber_uu-1",
+                    "subscriber_id": 1,
+                    "campaign": {
+                      "id": 1,
+                      "name": "Example Name"
+                    },
+                    "campaign_uuid": "campaign_uu-1",
+                    "total": 100
+                  }
+                ]
+              }
+            ],
+            "query": "query",
+            "total": 100,
+            "per_page": 30,
+            "page": 30
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getCampaignAnalytics:getCampaignAnalytics",
+      "operationId": "getCampaignAnalytics",
+      "methodName": "getCampaignAnalytics",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "type": "links",
+        "from": "2024-01-01",
+        "to": "to",
+        "id": "id-1"
+      },
+      "argumentOrder": [
+        "type",
+        "from",
+        "to",
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": [
+            {
+              "campaign_id": 1,
+              "count": 1,
+              "timestamp": "2024-01-01T00:00:00Z"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getCampaignById:getCampaignById",
+      "operationId": "getCampaignById",
+      "methodName": "getCampaignById",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1,
+        "noBody": false
+      },
+      "argumentOrder": [
+        "id",
+        "noBody"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "CampaignID": 1,
+            "views": 1,
+            "clicks": 1,
+            "lists": [
+              {
+                "id": 1,
+                "name": "Example Name"
+              }
+            ],
+            "started_at": "2024-01-01T00:00:00Z",
+            "to_send": 1,
+            "sent": 1,
+            "uuid": "uu-1",
+            "type": "regular",
+            "name": "Example Name",
+            "subject": "subject",
+            "from_email": "user@example.com",
+            "body": "body",
+            "send_at": "2024-01-01T00:00:00Z",
+            "status": "active",
+            "content_type": "richtext",
+            "tags": [
+              "tags"
+            ],
+            "template_id": 1,
+            "messenger": "messenger"
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getCampaigns:getCampaigns",
+      "operationId": "getCampaigns",
+      "methodName": "getCampaigns",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "status": [
+          "scheduled"
+        ],
+        "noBody": false,
+        "page": 30,
+        "perPage": 30,
+        "tags": [
+          "tags"
+        ],
+        "order": "ASC",
+        "orderBy": "name",
+        "query": "query"
+      },
+      "argumentOrder": [
+        "status",
+        "noBody",
+        "page",
+        "perPage",
+        "tags",
+        "order",
+        "orderBy",
+        "query"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "results": [
+              {
+                "id": 1,
+                "created_at": "2024-01-01T00:00:00Z",
+                "updated_at": "2024-01-01T00:00:00Z",
+                "CampaignID": 1,
+                "views": 1,
+                "clicks": 1,
+                "lists": [
+                  {
+                    "id": 1,
+                    "name": "Example Name"
+                  }
+                ],
+                "started_at": "2024-01-01T00:00:00Z",
+                "to_send": 1,
+                "sent": 1,
+                "uuid": "uu-1",
+                "type": "regular",
+                "name": "Example Name",
+                "subject": "subject",
+                "from_email": "user@example.com",
+                "body": "body",
+                "send_at": "2024-01-01T00:00:00Z",
+                "status": "active",
+                "content_type": "richtext",
+                "tags": [
+                  "tags"
+                ],
+                "template_id": 1,
+                "messenger": "messenger"
+              }
+            ],
+            "query": "query",
+            "total": 100,
+            "per_page": 30,
+            "page": 30
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getDashboardCharts:getDashboardCharts",
+      "operationId": "getDashboardCharts",
+      "methodName": "getDashboardCharts",
+      "namespace": [
+        "miscellaneous"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Miscellaneous",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "link_clicks": [
+              {
+                "count": 1,
+                "date": "2024-01-01T00:00:00Z"
+              }
+            ],
+            "campaign_views": [
+              {
+                "count": 1,
+                "date": "2024-01-01T00:00:00Z"
+              }
+            ]
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getDashboardCounts:getDashboardCounts",
+      "operationId": "getDashboardCounts",
+      "methodName": "getDashboardCounts",
+      "namespace": [
+        "miscellaneous"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Miscellaneous",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "data": {
+              "subscribers": {
+                "total": 100,
+                "blocklisted": {},
+                "orphans": 1
+              },
+              "lists": {
+                "total": 100,
+                "private": 1,
+                "public": 1,
+                "optin_single": 1,
+                "optin_double": 1
+              },
+              "campaigns": {
+                "total": 100,
+                "by_status": {
+                  "draft": 1
+                }
+              },
+              "messages": 30
+            }
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getHealthCheck:getHealthCheck",
+      "operationId": "getHealthCheck",
+      "methodName": "getHealthCheck",
+      "namespace": [
+        "miscellaneous"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Miscellaneous",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getI18nLang:getI18nLang",
+      "operationId": "getI18nLang",
+      "methodName": "getI18nLang",
+      "namespace": [
+        "miscellaneous"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Miscellaneous",
+      "arguments": {
+        "lang": "lang"
+      },
+      "argumentOrder": [
+        "lang"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "data": {
+              "_.code": "_.code",
+              "_.name": "Example Name",
+              "admin.errorMarshallingConfig": "admin.errorMarshallingConfig",
+              "analytics.count": "analytics.count",
+              "analytics.fromDate": "2024-01-01T00:00:00Z",
+              "analytics.invalidDates": "2024-01-01T00:00:00Z",
+              "analytics.isUnique": "analytics.isUnique",
+              "analytics.links": "https://example.com",
+              "analytics.nonUnique": "analytics.nonUnique",
+              "analytics.title": "analytics.title",
+              "analytics.toDate": "2024-01-01T00:00:00Z",
+              "bounces.numSelected": "bounces.numSelected",
+              "bounces.selectAll": "bounces.selectAll",
+              "bounces.source": "bounces.source",
+              "bounces.unknownService": "bounces.unknownService",
+              "bounces.view": "bounces.view",
+              "campaigns.addAltText": "campaigns.addAltText",
+              "campaigns.archive": "campaigns.archive",
+              "campaigns.archiveEnable": "campaigns.archiveEnable",
+              "campaigns.archiveHelp": "campaigns.archiveHelp",
+              "campaigns.archiveMeta": "campaigns.archiveMeta",
+              "campaigns.archiveMetaHelp": "campaigns.archiveMetaHelp",
+              "campaigns.cantUpdate": "2024-01-01T00:00:00Z",
+              "campaigns.clicks": "campaigns.clicks",
+              "campaigns.confirmDelete": "campaigns.confirmDelete",
+              "campaigns.confirmSchedule": "campaigns.confirmSchedule",
+              "campaigns.confirmSwitchFormat": "2024-01-01T00:00:00Z",
+              "campaigns.content": "campaigns.content",
+              "campaigns.contentHelp": "campaigns.contentHelp",
+              "campaigns.continue": "campaigns.continue",
+              "campaigns.copyOf": "campaigns.copyOf",
+              "campaigns.customHeadersHelp": "campaigns.customHeadersHelp",
+              "campaigns.dateAndTime": "2024-01-01T00:00:00Z",
+              "campaigns.ended": "campaigns.ended",
+              "campaigns.errorSendTest": "campaigns.errorSendTest",
+              "campaigns.fieldInvalidBody": "campaigns.fieldInvalidBody",
+              "campaigns.fieldInvalidFromEmail": "user@example.com",
+              "campaigns.fieldInvalidListIDs": "campaigns.fieldInvalidListIDs",
+              "campaigns.fieldInvalidMessenger": "campaigns.fieldInvalidMessenger",
+              "campaigns.fieldInvalidName": "Example Name",
+              "campaigns.fieldInvalidSendAt": "2024-01-01T00:00:00Z",
+              "campaigns.fieldInvalidSubject": "campaigns.fieldInvalidSubject",
+              "campaigns.formatHTML": "campaigns.formatHTML",
+              "campaigns.fromAddress": "campaigns.fromAddress",
+              "campaigns.fromAddressPlaceholder": "campaigns.fromAddressPlaceholder",
+              "campaigns.invalid": "campaigns.inval-1",
+              "campaigns.invalidCustomHeaders": "campaigns.invalidCustomHeaders",
+              "campaigns.markdown": "campaigns.markdown",
+              "campaigns.needsSendAt": "2024-01-01T00:00:00Z",
+              "campaigns.newCampaign": "campaigns.newCampaign",
+              "campaigns.noKnownSubsToTest": "campaigns.noKnownSubsToTest",
+              "campaigns.noOptinLists": "campaigns.noOptinLists",
+              "campaigns.noSubs": "campaigns.noSubs",
+              "campaigns.noSubsToTest": "campaigns.noSubsToTest",
+              "campaigns.notFound": "campaigns.notFound",
+              "campaigns.onlyActiveCancel": "campaigns.onlyActiveCancel",
+              "campaigns.onlyActivePause": "campaigns.onlyActivePause",
+              "campaigns.onlyDraftAsScheduled": "campaigns.onlyDraftAsScheduled",
+              "campaigns.onlyPausedDraft": "campaigns.onlyPausedDraft",
+              "campaigns.onlyScheduledAsDraft": "campaigns.onlyScheduledAsDraft",
+              "campaigns.pause": "campaigns.pause",
+              "campaigns.plainText": "campaigns.plainText",
+              "campaigns.preview": "campaigns.preview",
+              "campaigns.progress": "campaigns.progress",
+              "campaigns.queryPlaceholder": "campaigns.queryPlaceholder",
+              "campaigns.rateMinuteShort": "campaigns.rateMinuteShort",
+              "campaigns.rawHTML": "campaigns.rawHTML",
+              "campaigns.removeAltText": "campaigns.removeAltText",
+              "campaigns.richText": "campaigns.richText",
+              "campaigns.schedule": "campaigns.schedule",
+              "campaigns.scheduled": "campaigns.scheduled",
+              "campaigns.send": "campaigns.send",
+              "campaigns.sendLater": "campaigns.sendLater",
+              "campaigns.sendTest": "campaigns.sendTest",
+              "campaigns.sendTestHelp": "campaigns.sendTestHelp",
+              "campaigns.sendToLists": "campaigns.sendToLists",
+              "campaigns.sent": "campaigns.sent",
+              "campaigns.start": "campaigns.start",
+              "campaigns.started": "campaigns.started",
+              "campaigns.startedAt": "2024-01-01T00:00:00Z",
+              "campaigns.stats": "campaigns.stats",
+              "campaigns.status.cancelled": "active",
+              "campaigns.status.draft": "active",
+              "campaigns.status.finished": "active",
+              "campaigns.status.paused": "active",
+              "campaigns.status.running": "active",
+              "campaigns.status.scheduled": "active",
+              "campaigns.statusChanged": "active",
+              "campaigns.subject": "campaigns.subject",
+              "campaigns.testEmails": "user@example.com",
+              "campaigns.testSent": "campaigns.testSent",
+              "campaigns.timestamps": "2024-01-01T00:00:00Z",
+              "campaigns.trackLink": "https://example.com",
+              "campaigns.views": "campaigns.views",
+              "dashboard.campaignViews": "dashboard.campaignViews",
+              "dashboard.linkClicks": "https://example.com",
+              "dashboard.messagesSent": "example text",
+              "dashboard.orphanSubs": "dashboard.orphanSubs",
+              "email.data.info": "user@example.com",
+              "email.data.title": "user@example.com",
+              "email.optin.confirmSub": "user@example.com",
+              "email.optin.confirmSubHelp": "user@example.com",
+              "email.optin.confirmSubInfo": "user@example.com",
+              "email.optin.confirmSubTitle": "user@example.com",
+              "email.optin.confirmSubWelcome": "user@example.com",
+              "email.optin.privateList": "user@example.com",
+              "email.status.campaignReason": "user@example.com",
+              "email.status.campaignSent": "user@example.com",
+              "email.status.campaignUpdateTitle": "user@example.com",
+              "email.status.importFile": "user@example.com",
+              "email.status.importRecords": "user@example.com",
+              "email.status.importTitle": "user@example.com",
+              "email.status.status": "user@example.com",
+              "email.unsub": "user@example.com",
+              "email.unsubHelp": "user@example.com",
+              "email.viewInBrowser": "user@example.com",
+              "forms.formHTML": "forms.formHTML",
+              "forms.formHTMLHelp": "forms.formHTMLHelp",
+              "forms.noPublicLists": "forms.noPublicLists",
+              "forms.publicLists": "forms.publicLists",
+              "forms.publicSubPage": "forms.publicSubPage",
+              "forms.selectHelp": "forms.selectHelp",
+              "forms.title": "forms.title",
+              "globals.buttons.add": "globals.buttons.add",
+              "globals.buttons.addNew": "globals.buttons.addNew",
+              "globals.buttons.back": "globals.buttons.back",
+              "globals.buttons.cancel": "globals.buttons.cancel",
+              "globals.buttons.clone": "globals.buttons.clone",
+              "globals.buttons.close": "globals.buttons.close",
+              "globals.buttons.continue": "globals.buttons.continue",
+              "globals.buttons.delete": "globals.buttons.delete",
+              "globals.buttons.deleteAll": "globals.buttons.deleteAll",
+              "globals.buttons.edit": "globals.buttons.edit",
+              "globals.buttons.enabled": "globals.buttons.enabled",
+              "globals.buttons.insert": "globals.buttons.insert",
+              "globals.buttons.learnMore": "globals.buttons.learnMore",
+              "globals.buttons.more": "globals.buttons.more",
+              "globals.buttons.new": "globals.buttons.new",
+              "globals.buttons.ok": "globals.buttons.ok",
+              "globals.buttons.remove": "globals.buttons.remove",
+              "globals.buttons.save": "globals.buttons.save",
+              "globals.buttons.saveChanges": "globals.buttons.saveChanges",
+              "globals.days.0": "globals.days.0",
+              "globals.days.1": "globals.days.1",
+              "globals.days.2": "globals.days.2",
+              "globals.days.3": "globals.days.3",
+              "globals.days.4": "globals.days.4",
+              "globals.days.5": "globals.days.5",
+              "globals.days.6": "globals.days.6",
+              "globals.days.7": "globals.days.7",
+              "globals.fields.createdAt": "2024-01-01T00:00:00Z",
+              "globals.fields.description": "example text",
+              "globals.fields.id": "globals.fields.-1",
+              "globals.fields.name": "Example Name",
+              "globals.fields.status": "active",
+              "globals.fields.type": "globals.fields.type",
+              "globals.fields.updatedAt": "2024-01-01T00:00:00Z",
+              "globals.fields.uuid": "globals.fields.uu-1",
+              "globals.messages.confirm": "example text",
+              "globals.messages.confirmDiscard": "example text",
+              "globals.messages.created": "example text",
+              "globals.messages.deleted": "example text",
+              "globals.messages.deletedCount": "example text",
+              "globals.messages.done": "example text",
+              "globals.messages.emptyState": "example text",
+              "globals.messages.errorCreating": "example text",
+              "globals.messages.errorDeleting": "example text",
+              "globals.messages.errorFetching": "example text",
+              "globals.messages.errorInvalidIDs": "example text",
+              "globals.messages.errorUUID": "globals.messages.errorUU-1",
+              "globals.messages.errorUpdating": "example text",
+              "globals.messages.internalError": "example text",
+              "globals.messages.invalidData": "example text",
+              "globals.messages.invalidID": "globals.messages.invalid-1",
+              "globals.messages.invalidUUID": "globals.messages.invalidUU-1",
+              "globals.messages.missingFields": "example text",
+              "globals.messages.notFound": "example text",
+              "globals.messages.passwordChange": "example text",
+              "globals.messages.updated": "2024-01-01T00:00:00Z",
+              "globals.months.1": "globals.months.1",
+              "globals.months.10": "globals.months.10",
+              "globals.months.11": "globals.months.11",
+              "globals.months.12": "globals.months.12",
+              "globals.months.2": "globals.months.2",
+              "globals.months.3": "globals.months.3",
+              "globals.months.4": "globals.months.4",
+              "globals.months.5": "globals.months.5",
+              "globals.months.6": "globals.months.6",
+              "globals.months.7": "globals.months.7",
+              "globals.months.8": "globals.months.8",
+              "globals.months.9": "globals.months.9",
+              "globals.states.off": "globals.states.off",
+              "globals.terms.all": "globals.terms.all",
+              "globals.terms.analytics": "globals.terms.analytics",
+              "globals.terms.bounce": "globals.terms.bounce",
+              "globals.terms.bounces": "globals.terms.bounces",
+              "globals.terms.campaign": "globals.terms.campaign",
+              "globals.terms.campaigns": "globals.terms.campaigns",
+              "globals.terms.dashboard": "globals.terms.dashboard",
+              "globals.terms.day": "globals.terms.day",
+              "globals.terms.hour": "globals.terms.hour",
+              "globals.terms.list": "globals.terms.list",
+              "globals.terms.lists": "globals.terms.lists",
+              "globals.terms.media": "globals.terms.media",
+              "globals.terms.messenger": "globals.terms.messenger",
+              "globals.terms.messengers": "globals.terms.messengers",
+              "globals.terms.minute": "globals.terms.minute",
+              "globals.terms.month": "globals.terms.month",
+              "globals.terms.second": "globals.terms.second",
+              "globals.terms.settings": "globals.terms.settings",
+              "globals.terms.subscriber": "globals.terms.subscriber",
+              "globals.terms.subscribers": "globals.terms.subscribers",
+              "globals.terms.subscriptions": "globals.terms.subscriptions",
+              "globals.terms.tag": "globals.terms.tag",
+              "globals.terms.tags": "globals.terms.tags",
+              "globals.terms.template": "globals.terms.template",
+              "globals.terms.templates": "globals.terms.templates",
+              "globals.terms.tx": "globals.terms.tx",
+              "globals.terms.year": "globals.terms.year",
+              "import.alreadyRunning": "import.alreadyRunning",
+              "import.blocklist": "import.blocklist",
+              "import.csvDelim": "import.csvDelim",
+              "import.csvDelimHelp": "import.csvDelimHelp",
+              "import.csvExample": "import.csvExample",
+              "import.csvFile": "import.csvFile",
+              "import.csvFileHelp": "import.csvFileHelp",
+              "import.errorCopyingFile": "import.errorCopyingFile",
+              "import.errorProcessingZIP": "import.errorProcessingZIP",
+              "import.errorStarting": "import.errorStarting",
+              "import.importDone": "import.importDone",
+              "import.importStarted": "import.importStarted",
+              "import.instructions": "import.instructions",
+              "import.instructionsHelp": "import.instructionsHelp",
+              "import.invalidDelim": "import.invalidDelim",
+              "import.invalidFile": "import.invalidFile",
+              "import.invalidMode": "import.invalidMode",
+              "import.invalidParams": "import.invalidParams",
+              "import.invalidSubStatus": "active",
+              "import.listSubHelp": "import.listSubHelp",
+              "import.mode": "import.mode",
+              "import.overwrite": "import.overwrite",
+              "import.overwriteHelp": "import.overwriteHelp",
+              "import.recordsCount": "import.recordsCount",
+              "import.stopImport": "import.stopImport",
+              "import.subscribe": "import.subscribe",
+              "import.subscribeWarning": "import.subscribeWarning",
+              "import.title": "import.title",
+              "import.upload": "import.upload",
+              "lists.confirmDelete": "lists.confirmDelete",
+              "lists.confirmSub": "lists.confirmSub",
+              "lists.invalidName": "Example Name",
+              "lists.newList": "lists.newList",
+              "lists.optin": "lists.optin",
+              "lists.optinHelp": "lists.optinHelp",
+              "lists.optinTo": "lists.optinTo",
+              "lists.optins.double": "lists.optins.double",
+              "lists.optins.single": "lists.optins.single",
+              "lists.sendCampaign": "lists.sendCampaign",
+              "lists.sendOptinCampaign": "lists.sendOptinCampaign",
+              "lists.type": "lists.type",
+              "lists.typeHelp": "lists.typeHelp",
+              "lists.types.private": "lists.types.private",
+              "lists.types.public": "lists.types.public",
+              "logs.title": "logs.title",
+              "maintenance.help": "maintenance.help",
+              "maintenance.maintenance.unconfirmedOptins": "maintenance.maintenance.unconfirmedOptins",
+              "maintenance.olderThan": "maintenance.olderThan",
+              "maintenance.title": "maintenance.title",
+              "maintenance.unconfirmedSubs": "maintenance.unconfirmedSubs",
+              "media.errorReadingFile": "media.errorReadingFile",
+              "media.errorResizing": "media.errorResizing",
+              "media.errorSavingThumbnail": "media.errorSavingThumbnail",
+              "media.errorUploading": "media.errorUploading",
+              "media.invalidFile": "media.invalidFile",
+              "media.title": "media.title",
+              "media.unsupportedFileType": "media.unsupportedFileType",
+              "media.upload": "media.upload",
+              "media.uploadHelp": "media.uploadHelp",
+              "media.uploadImage": "media.uploadImage",
+              "menu.allCampaigns": "menu.allCampaigns",
+              "menu.allLists": "menu.allLists",
+              "menu.allSubscribers": "menu.allSubscribers",
+              "menu.dashboard": "menu.dashboard",
+              "menu.forms": "menu.forms",
+              "menu.import": "menu.import",
+              "menu.logs": "menu.logs",
+              "menu.maintenance": "menu.maintenance",
+              "menu.media": "menu.media",
+              "menu.newCampaign": "menu.newCampaign",
+              "menu.settings": "menu.settings",
+              "public.archiveEmpty": "public.archiveEmpty",
+              "public.archiveTitle": "public.archiveTitle",
+              "public.blocklisted": "public.blocklisted",
+              "public.campaignNotFound": "public.campaignNotFound",
+              "public.confirmOptinSubTitle": "public.confirmOptinSubTitle",
+              "public.confirmSub": "public.confirmSub",
+              "public.confirmSubInfo": "public.confirmSubInfo",
+              "public.confirmSubTitle": "public.confirmSubTitle",
+              "public.dataRemoved": "public.dataRemoved",
+              "public.dataRemovedTitle": "public.dataRemovedTitle",
+              "public.dataSent": "public.dataSent",
+              "public.dataSentTitle": "public.dataSentTitle",
+              "public.errorFetchingCampaign": "public.errorFetchingCampaign",
+              "public.errorFetchingEmail": "user@example.com",
+              "public.errorFetchingLists": "public.errorFetchingLists",
+              "public.errorProcessingRequest": "public.errorProcessingRequest",
+              "public.errorTitle": "public.errorTitle",
+              "public.invalidFeature": "public.invalidFeature",
+              "public.invalidLink": "https://example.com",
+              "public.managePrefs": "public.managePrefs",
+              "public.managePrefsUnsub": "public.managePrefsUnsub",
+              "public.noListsAvailable": "public.noListsAvailable",
+              "public.noListsSelected": "public.noListsSelected",
+              "public.noSubInfo": "public.noSubInfo",
+              "public.noSubTitle": "public.noSubTitle",
+              "public.notFoundTitle": "public.notFoundTitle",
+              "public.prefsSaved": "public.prefsSaved",
+              "public.privacyConfirmWipe": "public.privacyConfirmWipe",
+              "public.privacyExport": "public.privacyExport",
+              "public.privacyExportHelp": "public.privacyExportHelp",
+              "public.privacyTitle": "public.privacyTitle",
+              "public.privacyWipe": "public.privacyWipe",
+              "public.privacyWipeHelp": "public.privacyWipeHelp",
+              "public.sub": "public.sub",
+              "public.subConfirmed": "public.subConfirmed",
+              "public.subConfirmedTitle": "public.subConfirmedTitle",
+              "public.subName": "Example Name",
+              "public.subNotFound": "public.subNotFound",
+              "public.subOptinPending": "public.subOptinPending",
+              "public.subPrivateList": "public.subPrivateList",
+              "public.subTitle": "public.subTitle",
+              "public.unsub": "public.unsub",
+              "public.unsubFull": "public.unsubFull",
+              "public.unsubHelp": "public.unsubHelp",
+              "public.unsubTitle": "public.unsubTitle",
+              "public.unsubbedInfo": "public.unsubbedInfo",
+              "public.unsubbedTitle": "public.unsubbedTitle",
+              "public.unsubscribeTitle": "public.unsubscribeTitle",
+              "settings.appearance.adminHelp": "settings.appearance.adminHelp",
+              "settings.appearance.adminName": "Example Name",
+              "settings.appearance.customCSS": "settings.appearance.customCSS",
+              "settings.appearance.customJS": "settings.appearance.customJS",
+              "settings.appearance.name": "Example Name",
+              "settings.appearance.publicHelp": "settings.appearance.publicHelp",
+              "settings.appearance.publicName": "Example Name",
+              "settings.bounces.action": "settings.bounces.action",
+              "settings.bounces.blocklist": "settings.bounces.blocklist",
+              "settings.bounces.count": "settings.bounces.count",
+              "settings.bounces.countHelp": "settings.bounces.countHelp",
+              "settings.bounces.delete": "settings.bounces.delete",
+              "settings.bounces.enable": "settings.bounces.enable",
+              "settings.bounces.enableMailbox": "user@example.com",
+              "settings.bounces.enableSES": "settings.bounces.enableSES",
+              "settings.bounces.enableAzure": "settings.bounces.enableAzure",
+              "settings.bounces.enableSendgrid": "settings.bounces.enableSendgr-1",
+              "settings.bounces.enableForwardemail": "user@example.com",
+              "settings.bounces.enablePostmark": "settings.bounces.enablePostmark",
+              "settings.bounces.enableWebhooks": "settings.bounces.enableWebhooks",
+              "settings.bounces.enabled": "settings.bounces.enabled",
+              "settings.bounces.folder": "settings.bounces.folder",
+              "settings.bounces.folderHelp": "settings.bounces.folderHelp",
+              "settings.bounces.invalidScanInterval": "settings.bounces.invalidScanInterval",
+              "settings.bounces.azureSharedSecret": "settings.bounces.azureSharedSecret",
+              "settings.bounces.azureSharedSecretHelp": "settings.bounces.azureSharedSecretHelp",
+              "settings.bounces.azureSharedSecretHeader": "settings.bounces.azureSharedSecretHeader",
+              "settings.bounces.azureSharedSecretHeaderHelp": "settings.bounces.azureSharedSecretHeaderHelp",
+              "settings.bounces.name": "Example Name",
+              "settings.bounces.scanInterval": "settings.bounces.scanInterval",
+              "settings.bounces.scanIntervalHelp": "settings.bounces.scanIntervalHelp",
+              "settings.bounces.sendgridKey": "settings.bounces.sendgridKey",
+              "settings.bounces.forwardemailKey": "user@example.com",
+              "settings.bounces.postmarkUsername": "Example Name",
+              "settings.bounces.postmarkUsernameHelp": "Example Name",
+              "settings.bounces.postmarkPassword": "settings.bounces.postmarkPassword",
+              "settings.bounces.type": "settings.bounces.type",
+              "settings.bounces.username": "Example Name",
+              "settings.confirmRestart": "settings.confirmRestart",
+              "settings.duplicateMessengerName": "Example Name",
+              "settings.errorEncoding": "settings.errorEncoding",
+              "settings.errorNoSMTP": "settings.errorNoSMTP",
+              "settings.general.adminNotifEmails": "user@example.com",
+              "settings.general.adminNotifEmailsHelp": "user@example.com",
+              "settings.general.checkUpdates": "2024-01-01T00:00:00Z",
+              "settings.general.checkUpdatesHelp": "2024-01-01T00:00:00Z",
+              "settings.general.enablePublicArchive": "settings.general.enablePublicArchive",
+              "settings.general.enablePublicArchiveHelp": "settings.general.enablePublicArchiveHelp",
+              "settings.general.enablePublicSubPage": "settings.general.enablePublicSubPage",
+              "settings.general.enablePublicSubPageHelp": "settings.general.enablePublicSubPageHelp",
+              "settings.general.faviconURL": "https://example.com",
+              "settings.general.faviconURLHelp": "https://example.com",
+              "settings.general.fromEmail": "user@example.com",
+              "settings.general.fromEmailHelp": "user@example.com",
+              "settings.general.language": "settings.general.language",
+              "settings.general.logoURL": "https://example.com",
+              "settings.general.logoURLHelp": "https://example.com",
+              "settings.general.name": "Example Name",
+              "settings.general.rootURL": "https://example.com",
+              "settings.general.rootURLHelp": "https://example.com",
+              "settings.general.sendOptinConfirm": "settings.general.sendOptinConfirm",
+              "settings.general.sendOptinConfirmHelp": "settings.general.sendOptinConfirmHelp",
+              "settings.general.siteName": "Example Name",
+              "settings.invalidMessengerName": "Example Name",
+              "settings.mailserver.authProtocol": "settings.mailserver.authProtocol",
+              "settings.mailserver.name": "Example Name",
+              "settings.mailserver.nameHelp": "Example Name",
+              "settings.mailserver.host": "settings.mailserver.host",
+              "settings.mailserver.hostHelp": "settings.mailserver.hostHelp",
+              "settings.mailserver.idleTimeout": "2024-01-01T00:00:00Z",
+              "settings.mailserver.idleTimeoutHelp": "2024-01-01T00:00:00Z",
+              "settings.mailserver.maxConns": "settings.mailserver.maxConns",
+              "settings.mailserver.maxConnsHelp": "settings.mailserver.maxConnsHelp",
+              "settings.mailserver.password": "settings.mailserver.password",
+              "settings.mailserver.passwordHelp": "settings.mailserver.passwordHelp",
+              "settings.mailserver.port": "settings.mailserver.port",
+              "settings.mailserver.portHelp": "settings.mailserver.portHelp",
+              "settings.mailserver.skipTLS": "settings.mailserver.skipTLS",
+              "settings.mailserver.skipTLSHelp": "settings.mailserver.skipTLSHelp",
+              "settings.mailserver.tls": "settings.mailserver.tls",
+              "settings.mailserver.tlsHelp": "settings.mailserver.tlsHelp",
+              "settings.mailserver.username": "Example Name",
+              "settings.mailserver.waitTimeout": "2024-01-01T00:00:00Z",
+              "settings.mailserver.waitTimeoutHelp": "2024-01-01T00:00:00Z",
+              "settings.media.provider": "settings.media.provider",
+              "settings.media.s3.bucket": "settings.media.s3.bucket",
+              "settings.media.s3.bucketPath": "settings.media.s3.bucketPath",
+              "settings.media.s3.bucketPathHelp": "settings.media.s3.bucketPathHelp",
+              "settings.media.s3.bucketType": "settings.media.s3.bucketType",
+              "settings.media.s3.bucketTypePrivate": "settings.media.s3.bucketTypePrivate",
+              "settings.media.s3.bucketTypePublic": "settings.media.s3.bucketTypePublic",
+              "settings.media.s3.key": "settings.media.s3.key",
+              "settings.media.s3.publicURL": "https://example.com",
+              "settings.media.s3.publicURLHelp": "https://example.com",
+              "settings.media.s3.region": "settings.media.s3.region",
+              "settings.media.s3.secret": "settings.media.s3.secret",
+              "settings.media.s3.uploadExpiry": "settings.media.s3.uploadExpiry",
+              "settings.media.s3.uploadExpiryHelp": "settings.media.s3.uploadExpiryHelp",
+              "settings.media.s3.url": "https://example.com",
+              "settings.media.s3.urlHelp": "https://example.com",
+              "settings.media.title": "settings.media.title",
+              "settings.media.upload.path": "settings.media.upload.path",
+              "settings.media.upload.pathHelp": "settings.media.upload.pathHelp",
+              "settings.media.upload.uri": "https://example.com",
+              "settings.media.upload.uriHelp": "https://example.com",
+              "settings.messengers.maxConns": "settings.messengers.maxConns",
+              "settings.messengers.maxConnsHelp": "settings.messengers.maxConnsHelp",
+              "settings.messengers.messageSaved": "example text",
+              "settings.messengers.name": "Example Name",
+              "settings.messengers.nameHelp": "Example Name",
+              "settings.messengers.password": "settings.messengers.password",
+              "settings.messengers.retries": "settings.messengers.retries",
+              "settings.messengers.retriesHelp": "settings.messengers.retriesHelp",
+              "settings.messengers.skipTLSHelp": "settings.messengers.skipTLSHelp",
+              "settings.messengers.timeout": "2024-01-01T00:00:00Z",
+              "settings.messengers.timeoutHelp": "2024-01-01T00:00:00Z",
+              "settings.messengers.url": "https://example.com",
+              "settings.messengers.urlHelp": "https://example.com",
+              "settings.messengers.username": "Example Name",
+              "settings.needsRestart": "settings.needsRestart",
+              "settings.performance.batchSize": "settings.performance.batchSize",
+              "settings.performance.batchSizeHelp": "settings.performance.batchSizeHelp",
+              "settings.performance.concurrency": "settings.performance.concurrency",
+              "settings.performance.concurrencyHelp": "settings.performance.concurrencyHelp",
+              "settings.performance.maxErrThreshold": "settings.performance.maxErrThreshold",
+              "settings.performance.maxErrThresholdHelp": "settings.performance.maxErrThresholdHelp",
+              "settings.performance.messageRate": "example text",
+              "settings.performance.messageRateHelp": "example text",
+              "settings.performance.name": "Example Name",
+              "settings.performance.slidingWindow": "settings.performance.slidingWindow",
+              "settings.performance.slidingWindowDuration": "settings.performance.slidingWindowDuration",
+              "settings.performance.slidingWindowDurationHelp": "settings.performance.slidingWindowDurationHelp",
+              "settings.performance.slidingWindowHelp": "settings.performance.slidingWindowHelp",
+              "settings.performance.slidingWindowRate": "settings.performance.slidingWindowRate",
+              "settings.performance.slidingWindowRateHelp": "settings.performance.slidingWindowRateHelp",
+              "settings.privacy.allowBlocklist": "settings.privacy.allowBlocklist",
+              "settings.privacy.allowBlocklistHelp": "settings.privacy.allowBlocklistHelp",
+              "settings.privacy.allowExport": "settings.privacy.allowExport",
+              "settings.privacy.allowExportHelp": "settings.privacy.allowExportHelp",
+              "settings.privacy.allowPrefs": "settings.privacy.allowPrefs",
+              "settings.privacy.allowPrefsHelp": "settings.privacy.allowPrefsHelp",
+              "settings.privacy.allowWipe": "settings.privacy.allowWipe",
+              "settings.privacy.allowWipeHelp": "settings.privacy.allowWipeHelp",
+              "settings.privacy.domainBlocklist": "settings.privacy.domainBlocklist",
+              "settings.privacy.domainBlocklistHelp": "settings.privacy.domainBlocklistHelp",
+              "settings.privacy.individualSubTracking": "settings.privacy.individualSubTracking",
+              "settings.privacy.individualSubTrackingHelp": "settings.privacy.individualSubTrackingHelp",
+              "settings.privacy.listUnsubHeader": "settings.privacy.listUnsubHeader",
+              "settings.privacy.listUnsubHeaderHelp": "settings.privacy.listUnsubHeaderHelp",
+              "settings.privacy.name": "Example Name",
+              "settings.restart": "settings.restart",
+              "settings.smtp.customHeaders": "settings.smtp.customHeaders",
+              "settings.smtp.customHeadersHelp": "settings.smtp.customHeadersHelp",
+              "settings.smtp.enabled": "settings.smtp.enabled",
+              "settings.smtp.heloHost": "settings.smtp.heloHost",
+              "settings.smtp.heloHostHelp": "settings.smtp.heloHostHelp",
+              "settings.smtp.name": "Example Name",
+              "settings.smtp.retries": "settings.smtp.retries",
+              "settings.smtp.retriesHelp": "settings.smtp.retriesHelp",
+              "settings.smtp.sendTest": "settings.smtp.sendTest",
+              "settings.smtp.setCustomHeaders": "settings.smtp.setCustomHeaders",
+              "settings.smtp.testConnection": "settings.smtp.testConnection",
+              "settings.smtp.testEnterEmail": "user@example.com",
+              "settings.smtp.toEmail": "user@example.com",
+              "settings.title": "settings.title",
+              "settings.updateAvailable": "2024-01-01T00:00:00Z",
+              "subscribers.advancedQuery": "subscribers.advancedQuery",
+              "subscribers.advancedQueryHelp": "subscribers.advancedQueryHelp",
+              "subscribers.attribs": "subscribers.attribs",
+              "subscribers.attribsHelp": "subscribers.attribsHelp",
+              "subscribers.blocklistedHelp": "subscribers.blocklistedHelp",
+              "subscribers.confirmBlocklist": "subscribers.confirmBlocklist",
+              "subscribers.confirmDelete": "subscribers.confirmDelete",
+              "subscribers.confirmExport": "subscribers.confirmExport",
+              "subscribers.domainBlocklisted": "subscribers.domainBlocklisted",
+              "subscribers.downloadData": "subscribers.downloadData",
+              "subscribers.email": "user@example.com",
+              "subscribers.emailExists": "user@example.com",
+              "subscribers.errorBlocklisting": "subscribers.errorBlocklisting",
+              "subscribers.errorNoIDs": "subscribers.errorNoIDs",
+              "subscribers.errorNoListsGiven": "subscribers.errorNoListsGiven",
+              "subscribers.errorPreparingQuery": "subscribers.errorPreparingQuery",
+              "subscribers.errorSendingOptin": "subscribers.errorSendingOptin",
+              "subscribers.export": "subscribers.export",
+              "subscribers.invalidAction": "subscribers.invalidAction",
+              "subscribers.invalidEmail": "user@example.com",
+              "subscribers.invalidJSON": "subscribers.invalidJSON",
+              "subscribers.invalidName": "Example Name",
+              "subscribers.listChangeApplied": "subscribers.listChangeApplied",
+              "subscribers.lists": "subscribers.lists",
+              "subscribers.listsHelp": "subscribers.listsHelp",
+              "subscribers.listsPlaceholder": "subscribers.listsPlaceholder",
+              "subscribers.manageLists": "subscribers.manageLists",
+              "subscribers.markUnsubscribed": "subscribers.markUnsubscribed",
+              "subscribers.newSubscriber": "subscribers.newSubscriber",
+              "subscribers.numSelected": "subscribers.numSelected",
+              "subscribers.optinSubject": "subscribers.optinSubject",
+              "subscribers.preconfirm": "subscribers.preconfirm",
+              "subscribers.preconfirmHelp": "subscribers.preconfirmHelp",
+              "subscribers.query": "subscribers.query",
+              "subscribers.queryPlaceholder": "subscribers.queryPlaceholder",
+              "subscribers.reset": "subscribers.reset",
+              "subscribers.selectAll": "subscribers.selectAll",
+              "subscribers.sendOptinConfirm": "subscribers.sendOptinConfirm",
+              "subscribers.sentOptinConfirm": "subscribers.sentOptinConfirm",
+              "subscribers.status.blocklisted": "active",
+              "subscribers.status.confirmed": "active",
+              "subscribers.status.enabled": "active",
+              "subscribers.status.subscribed": "active",
+              "subscribers.status.unconfirmed": "active",
+              "subscribers.status.unsubscribed": "active",
+              "subscribers.subscribersDeleted": "subscribers.subscribersDeleted",
+              "templates.cantDeleteDefault": "templates.cantDeleteDefault",
+              "templates.default": "templates.default",
+              "templates.dummyName": "Example Name",
+              "templates.dummySubject": "templates.dummySubject",
+              "templates.errorCompiling": "templates.errorCompiling",
+              "templates.errorRendering": "templates.errorRendering",
+              "templates.fieldInvalidName": "Example Name",
+              "templates.makeDefault": "templates.makeDefault",
+              "templates.newTemplate": "templates.newTemplate",
+              "templates.placeholderHelp": "templates.placeholderHelp",
+              "templates.preview": "templates.preview",
+              "templates.rawHTML": "templates.rawHTML",
+              "templates.subject": "templates.subject",
+              "users.login": "users.login",
+              "users.logout": "users.logout"
+            }
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getImportSubscriberLogs:getImportSubscriberLogs",
+      "operationId": "getImportSubscriberLogs",
+      "methodName": "getImportSubscriberLogs",
+      "namespace": [
+        "import"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Import",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": "data"
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getImportSubscribers:getImportSubscribers",
+      "operationId": "getImportSubscribers",
+      "methodName": "getImportSubscribers",
+      "namespace": [
+        "import"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Import",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "data": {
+              "name": "Example Name",
+              "total": 100,
+              "imported": 1,
+              "status": "active"
+            }
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getListById:getListById",
+      "operationId": "getListById",
+      "methodName": "getListById",
+      "namespace": [
+        "lists"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Lists",
+      "arguments": {
+        "listId": 1
+      },
+      "argumentOrder": [
+        "listId"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "uuid": "uu-1",
+            "name": "Example Name",
+            "type": "type",
+            "optin": "optin",
+            "tags": [
+              "tags"
+            ],
+            "subscriber_count": 1,
+            "description": "example text"
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getLists:getLists",
+      "operationId": "getLists",
+      "methodName": "getLists",
+      "namespace": [
+        "lists"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Lists",
+      "arguments": {
+        "page": 30,
+        "perPage": 30,
+        "query": "query",
+        "orderBy": "name",
+        "order": "ASC",
+        "minimal": false,
+        "tag": [
+          "tag"
+        ]
+      },
+      "argumentOrder": [
+        "page",
+        "perPage",
+        "query",
+        "orderBy",
+        "order",
+        "minimal",
+        "tag"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "results": [
+              {
+                "id": 1,
+                "created_at": "2024-01-01T00:00:00Z",
+                "updated_at": "2024-01-01T00:00:00Z",
+                "uuid": "uu-1",
+                "name": "Example Name",
+                "type": "type",
+                "optin": "optin",
+                "tags": [
+                  "tags"
+                ],
+                "subscriber_count": 1,
+                "description": "example text"
+              }
+            ],
+            "total": 100,
+            "per_page": 30,
+            "page": 30
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getLogs:getLogs",
+      "operationId": "getLogs",
+      "methodName": "getLogs",
+      "namespace": [
+        "logs"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Logs",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": [
+            "data"
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getMedia:getMedia",
+      "operationId": "getMedia",
+      "methodName": "getMedia",
+      "namespace": [
+        "media"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Media",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": [
+            {
+              "id": 1,
+              "uuid": "uu-1",
+              "filename": "Example Name",
+              "content_type": "content_type",
+              "created_at": "2024-01-01T00:00:00Z",
+              "thumb_url": "https://example.com",
+              "thumb_uri": "https://example.com",
+              "provider": "provider",
+              "meta": {},
+              "url": "https://example.com",
+              "uri": "https://example.com"
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getMediaById:getMediaById",
+      "operationId": "getMediaById",
+      "methodName": "getMediaById",
+      "namespace": [
+        "media"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Media",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "uuid": "uu-1",
+            "filename": "Example Name",
+            "content_type": "content_type",
+            "created_at": "2024-01-01T00:00:00Z",
+            "thumb_url": "https://example.com",
+            "thumb_uri": "https://example.com",
+            "provider": "provider",
+            "meta": {},
+            "url": "https://example.com",
+            "uri": "https://example.com"
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getPublicLists:getPublicLists",
+      "operationId": "getPublicLists",
+      "methodName": "getPublicLists",
+      "namespace": [
+        "public"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\PublicResource",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": [
+          {
+            "uuid": "uu-1",
+            "name": "Example Name"
+          }
+        ],
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getRunningCampaignStats:getRunningCampaignStats",
+      "operationId": "getRunningCampaignStats",
+      "methodName": "getRunningCampaignStats",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "campaignId": 1
+      },
+      "argumentOrder": [
+        "campaignId"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": [
+            {
+              "id": 1,
+              "status": "active",
+              "to_send": 1,
+              "sent": 1,
+              "started_at": "2024-01-01",
+              "updated_at": "2024-01-01",
+              "rate": 1,
+              "net_rate": 1
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getServerConfig:getServerConfig",
+      "operationId": "getServerConfig",
+      "methodName": "getServerConfig",
+      "namespace": [
+        "miscellaneous"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Miscellaneous",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "data": {
+              "messengers": [
+                "messengers"
+              ],
+              "langs": [
+                {
+                  "code": "code",
+                  "name": "Example Name"
+                }
+              ],
+              "lang": "lang",
+              "update": "2024-01-01T00:00:00Z",
+              "needs_restart": false,
+              "version": "version"
+            }
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getSettings:getSettings",
+      "operationId": "getSettings",
+      "methodName": "getSettings",
+      "namespace": [
+        "settings"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\SettingsApi",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "app.site_name": "Example Name",
+            "app.root_url": "https://example.com",
+            "app.logo_url": "https://example.com",
+            "app.favicon_url": "https://example.com",
+            "app.from_email": "user@example.com",
+            "app.notify_emails": [
+              "user@example.com"
+            ],
+            "app.enable_public_subscription_page": false,
+            "app.enable_public_archive": false,
+            "app.send_optin_confirmation": false,
+            "app.check_updates": false,
+            "app.lang": "app.lang",
+            "app.batch_size": 1,
+            "app.concurrency": 1,
+            "app.max_send_errors": 1,
+            "app.message_rate": 30,
+            "app.message_sliding_window": false,
+            "app.message_sliding_window_duration": "example text",
+            "app.message_sliding_window_rate": 30,
+            "privacy.individual_tracking": false,
+            "privacy.unsubscribe_header": false,
+            "privacy.allow_blocklist": false,
+            "privacy.allow_preferences": false,
+            "privacy.allow_export": false,
+            "privacy.allow_wipe": false,
+            "privacy.exportable": [
+              "privacy.exportable"
+            ],
+            "privacy.domain_blocklist": [
+              {}
+            ],
+            "upload.provider": "upload.provider",
+            "upload.filesystem.upload_path": "upload.filesystem.upload_path",
+            "upload.filesystem.upload_uri": "https://example.com",
+            "upload.s3.url": "https://example.com",
+            "upload.s3.public_url": "https://example.com",
+            "upload.s3.aws_access_key_id": "upload.s3.aws_access_key_-1",
+            "upload.s3.aws_default_region": "upload.s3.aws_default_region",
+            "upload.s3.bucket": "upload.s3.bucket",
+            "upload.s3.bucket_domain": "upload.s3.bucket_domain",
+            "upload.s3.bucket_path": "upload.s3.bucket_path",
+            "upload.s3.bucket_type": "upload.s3.bucket_type",
+            "upload.s3.expiry": "upload.s3.expiry",
+            "smtp": [
+              {
+                "uuid": "uu-1",
+                "enabled": false,
+                "host": "host",
+                "hello_hostname": "Example Name",
+                "port": 1,
+                "auth_protocol": "auth_protocol",
+                "username": "Example Name",
+                "email_headers": [
+                  {}
+                ],
+                "max_conns": 1,
+                "max_msg_retries": 1,
+                "idle_timeout": "2024-01-01T00:00:00Z",
+                "wait_timeout": "2024-01-01T00:00:00Z",
+                "tls_type": "tls_type",
+                "tls_skip_verify": false
+              }
+            ],
+            "messengers": [
+              {}
+            ],
+            "bounce.enabled": false,
+            "bounce.webhooks_enabled": false,
+            "bounce.count": 1,
+            "bounce.action": "bounce.action",
+            "bounce.ses_enabled": false,
+            "bounce.azure.enabled": false,
+            "bounce.azure.shared_secret": "bounce.azure.shared_secret",
+            "bounce.azure.shared_secret_header": "bounce.azure.shared_secret_header",
+            "bounce.sendgrid_enabled": false,
+            "bounce.sendgrid_key": "bounce.sendgrid_key",
+            "bounce.forwardemail_enabled": false,
+            "bounce.forwardemail_key": "user@example.com",
+            "bounce.postmark_enabled": false,
+            "bounce.postmark_username": "Example Name",
+            "bounce.postmark_password": "bounce.postmark_password",
+            "bounce.mailboxes": [
+              {
+                "uuid": "uu-1",
+                "enabled": false,
+                "type": "type",
+                "host": "host",
+                "port": 1,
+                "auth_protocol": "auth_protocol",
+                "return_path": "return_path",
+                "username": "Example Name",
+                "tls_enabled": false,
+                "tls_skip_verify": false,
+                "scan_interval": "scan_interval"
+              }
+            ],
+            "appearance.admin.custom_css": "appearance.admin.custom_css",
+            "appearance.admin.custom_js": "appearance.admin.custom_js",
+            "appearance.public.custom_css": "appearance.public.custom_css",
+            "appearance.public.custom_js": "appearance.public.custom_js"
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getSubscriberBouncesById:getSubscriberBouncesById",
+      "operationId": "getSubscriberBouncesById",
+      "methodName": "getSubscriberBouncesById",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": [
+            {
+              "results": [
+                {
+                  "id": 1,
+                  "type": "type",
+                  "source": "source",
+                  "meta": {},
+                  "created_at": "2024-01-01T00:00:00Z",
+                  "email": "user@example.com",
+                  "subscriber_uuid": "subscriber_uu-1",
+                  "subscriber_id": 1,
+                  "campaign": {
+                    "id": 1,
+                    "name": "Example Name"
+                  },
+                  "campaign_uuid": "campaign_uu-1",
+                  "total": 100
+                }
+              ]
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getSubscriberById:getSubscriberById",
+      "operationId": "getSubscriberById",
+      "methodName": "getSubscriberById",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "uuid": "uu-1",
+            "email": "user@example.com",
+            "name": "Example Name",
+            "attribs": {},
+            "status": "active",
+            "lists": [
+              {
+                "subscription_status": "active",
+                "id": 1,
+                "uuid": "uu-1",
+                "name": "Example Name",
+                "type": "type",
+                "tags": [
+                  "tags"
+                ],
+                "created_at": "2024-01-01T00:00:00Z",
+                "updated_at": "2024-01-01T00:00:00Z"
+              }
+            ]
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getSubscribers:getSubscribers",
+      "operationId": "getSubscribers",
+      "methodName": "getSubscribers",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "page": 30,
+        "perPage": 30,
+        "query": "query",
+        "orderBy": "name",
+        "order": "ASC",
+        "subscriptionStatus": "active",
+        "listId": [
+          1
+        ]
+      },
+      "argumentOrder": [
+        "page",
+        "perPage",
+        "query",
+        "orderBy",
+        "order",
+        "subscriptionStatus",
+        "listId"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "results": [
+              {
+                "id": 1,
+                "created_at": "2024-01-01T00:00:00Z",
+                "updated_at": "2024-01-01T00:00:00Z",
+                "uuid": "uu-1",
+                "email": "user@example.com",
+                "name": "Example Name",
+                "attribs": {},
+                "status": "active",
+                "lists": [
+                  {
+                    "subscription_status": "active",
+                    "id": 1,
+                    "uuid": "uu-1",
+                    "name": "Example Name",
+                    "type": "type",
+                    "tags": [
+                      "tags"
+                    ],
+                    "created_at": "2024-01-01T00:00:00Z",
+                    "updated_at": "2024-01-01T00:00:00Z"
+                  }
+                ]
+              }
+            ],
+            "query": "query",
+            "total": 100,
+            "per_page": 30,
+            "page": 30
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getTemplateById:getTemplateById",
+      "operationId": "getTemplateById",
+      "methodName": "getTemplateById",
+      "namespace": [
+        "templates"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Templates",
+      "arguments": {
+        "id": 1,
+        "noBody": false
+      },
+      "argumentOrder": [
+        "id",
+        "noBody"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "name": "Example Name",
+            "body": "body",
+            "body_source": "body_source",
+            "subject": "subject",
+            "type": "type",
+            "is_default": false
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "getTemplates:getTemplates",
+      "operationId": "getTemplates",
+      "methodName": "getTemplates",
+      "namespace": [
+        "templates"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Templates",
+      "arguments": {
+        "noBody": false
+      },
+      "argumentOrder": [
+        "noBody"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": [
+            {
+              "id": 1,
+              "created_at": "2024-01-01T00:00:00Z",
+              "updated_at": "2024-01-01T00:00:00Z",
+              "name": "Example Name",
+              "body": "body",
+              "body_source": "body_source",
+              "subject": "subject",
+              "type": "type",
+              "is_default": false
+            }
+          ]
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "handlePublicSubscription:handlePublicSubscription",
+      "operationId": "handlePublicSubscription",
+      "methodName": "handlePublicSubscription",
+      "namespace": [
+        "public"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\PublicResource",
+      "arguments": {
+        "name": "Example Name",
+        "email": "user@example.com",
+        "listUuids": [
+          "list_uuids"
+        ]
+      },
+      "argumentOrder": [
+        "name",
+        "email",
+        "listUuids"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "has_optin": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "importSubscribers:importSubscribers",
+      "operationId": "importSubscribers",
+      "methodName": "importSubscribers",
+      "namespace": [
+        "import"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Import",
+      "arguments": {
+        "params": "{\"mode\":\"subscribe\", \"subscription_status\":\"confirmed\", \"delim\":\",\", \"lists\":[1, 2], \"overwrite\": true}",
+        "file": "ZXhhbXBsZQ=="
+      },
+      "argumentOrder": [
+        "params",
+        "file"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "data": {
+              "name": "Example Name",
+              "total": 100,
+              "imported": 1,
+              "status": "active"
+            }
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "manageBlocklistBySubscriberList:manageBlocklistBySubscriberList",
+      "operationId": "manageBlocklistBySubscriberList",
+      "methodName": "manageBlocklistBySubscriberList",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "query": "query",
+        "ids": [
+          1
+        ],
+        "action": "add",
+        "targetListIds": 1,
+        "status": "confirmed"
+      },
+      "argumentOrder": [
+        "query",
+        "ids",
+        "action",
+        "targetListIds",
+        "status"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "manageBlocklistSubscribersById:manageBlocklistSubscribersById",
+      "operationId": "manageBlocklistSubscribersById",
+      "methodName": "manageBlocklistSubscribersById",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "id": 1,
+        "query": "query",
+        "ids": [
+          1
+        ],
+        "action": "add",
+        "targetListIds": 1,
+        "status": "confirmed"
+      },
+      "argumentOrder": [
+        "id",
+        "query",
+        "ids",
+        "action",
+        "targetListIds",
+        "status"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "manageSubscriberListById:manageSubscriberListById",
+      "operationId": "manageSubscriberListById",
+      "methodName": "manageSubscriberListById",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "id": 1,
+        "query": "query",
+        "ids": [
+          1
+        ],
+        "action": "add",
+        "targetListIds": 1,
+        "status": "confirmed"
+      },
+      "argumentOrder": [
+        "id",
+        "query",
+        "ids",
+        "action",
+        "targetListIds",
+        "status"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "manageSubscriberLists:manageSubscriberLists",
+      "operationId": "manageSubscriberLists",
+      "methodName": "manageSubscriberLists",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "query": "query",
+        "ids": [
+          1
+        ],
+        "action": "add",
+        "targetListIds": 1,
+        "status": "confirmed"
+      },
+      "argumentOrder": [
+        "query",
+        "ids",
+        "action",
+        "targetListIds",
+        "status"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "manageSubscriberListsByQuery:manageSubscriberListsByQuery",
+      "operationId": "manageSubscriberListsByQuery",
+      "methodName": "manageSubscriberListsByQuery",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "query": "query",
+        "ids": [
+          1
+        ],
+        "action": "add",
+        "targetListIds": 1,
+        "status": "confirmed"
+      },
+      "argumentOrder": [
+        "query",
+        "ids",
+        "action",
+        "targetListIds",
+        "status"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "manageSubscriberListsByQuery:manageSubscriberListsByQueryText",
+      "operationId": "manageSubscriberListsByQuery",
+      "methodName": "manageSubscriberListsByQueryText",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "body": "string"
+      },
+      "argumentOrder": [
+        "body"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "previewCampaignById:previewCampaignById",
+      "operationId": "previewCampaignById",
+      "methodName": "previewCampaignById",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "text",
+        "expected": "<h3>Hi John!</h3>This is a   e-mail campaign. Your second name is Doe and you are from Bengaluru",
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "previewCampaignTextById:previewCampaignTextById",
+      "operationId": "previewCampaignTextById",
+      "methodName": "previewCampaignTextById",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1,
+        "templateId": 1,
+        "contentType": "content_type",
+        "body": "sample"
+      },
+      "argumentOrder": [
+        "id",
+        "templateId",
+        "contentType",
+        "body"
+      ],
+      "response": {
+        "kind": "text",
+        "expected": "<h3>Hi John!</h3><p>This is a test e-mail campaign. Your second name is Doe and you are from Bengaluru</p>",
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "previewTemplate:previewTemplate",
+      "operationId": "previewTemplate",
+      "methodName": "previewTemplate",
+      "namespace": [
+        "templates"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Templates",
+      "arguments": {
+        "templateType": "template_type",
+        "body": "sample"
+      },
+      "argumentOrder": [
+        "templateType",
+        "body"
+      ],
+      "response": {
+        "kind": "text",
+        "expected": "<p>Hi there</p>",
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "previewTemplateById:previewTemplateById",
+      "operationId": "previewTemplateById",
+      "methodName": "previewTemplateById",
+      "namespace": [
+        "templates"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Templates",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "text",
+        "expected": "<p>Hi there</p>",
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "reloadApp:reloadApp",
+      "operationId": "reloadApp",
+      "methodName": "reloadApp",
+      "namespace": [
+        "admin"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Admin",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "setDefaultTemplateById:setDefaultTemplateById",
+      "operationId": "setDefaultTemplateById",
+      "methodName": "setDefaultTemplateById",
+      "namespace": [
+        "templates"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Templates",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "id": 1,
+          "created_at": "2024-01-01T00:00:00Z",
+          "updated_at": "2024-01-01T00:00:00Z",
+          "name": "Example Name",
+          "body": "body",
+          "body_source": "body_source",
+          "subject": "subject",
+          "type": "type",
+          "is_default": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "stopImportSubscribers:stopImportSubscribers",
+      "operationId": "stopImportSubscribers",
+      "methodName": "stopImportSubscribers",
+      "namespace": [
+        "import"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Import",
+      "arguments": {},
+      "argumentOrder": [],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "data": {
+              "name": "Example Name",
+              "total": 100,
+              "imported": 1,
+              "status": "active"
+            }
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "subscriberSendOptinById:subscriberSendOptinById",
+      "operationId": "subscriberSendOptinById",
+      "methodName": "subscriberSendOptinById",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "id": 1
+      },
+      "argumentOrder": [
+        "id"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "testCampaignById:testCampaignById",
+      "operationId": "testCampaignById",
+      "methodName": "testCampaignById",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1,
+        "name": "Example Name",
+        "subject": "subject",
+        "lists": [
+          1
+        ],
+        "fromEmail": "user@example.com",
+        "contentType": "content_type",
+        "messenger": "messenger",
+        "type": "type",
+        "tags": [
+          "tags"
+        ],
+        "sendLater": false,
+        "sendAt": {
+          "headers": [
+            {}
+          ],
+          "template_id": 1
+        }
+      },
+      "argumentOrder": [
+        "id",
+        "name",
+        "subject",
+        "lists",
+        "fromEmail",
+        "contentType",
+        "messenger",
+        "type",
+        "tags",
+        "sendLater",
+        "sendAt"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "testCampaignById:testCampaignByIdForm",
+      "operationId": "testCampaignById",
+      "methodName": "testCampaignByIdForm",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1,
+        "templateId": 1
+      },
+      "argumentOrder": [
+        "id",
+        "templateId"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "testSMTPSettings:testSmtpSettings",
+      "operationId": "testSMTPSettings",
+      "methodName": "testSmtpSettings",
+      "namespace": [
+        "settings"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\SettingsApi",
+      "arguments": {
+        "uuid": "uu-1",
+        "enabled": false,
+        "host": "host",
+        "helloHostname": "Example Name",
+        "port": 1,
+        "authProtocol": "auth_protocol",
+        "username": "Example Name",
+        "emailHeaders": [
+          {}
+        ],
+        "maxConns": 1,
+        "maxMsgRetries": 1,
+        "idleTimeout": "2024-01-01T00:00:00Z",
+        "waitTimeout": "2024-01-01T00:00:00Z",
+        "tlsType": "tls_type",
+        "tlsSkipVerify": false,
+        "strEmailHeaders": "user@example.com",
+        "password": "password",
+        "email": "user@example.com"
+      },
+      "argumentOrder": [
+        "uuid",
+        "enabled",
+        "host",
+        "helloHostname",
+        "port",
+        "authProtocol",
+        "username",
+        "emailHeaders",
+        "maxConns",
+        "maxMsgRetries",
+        "idleTimeout",
+        "waitTimeout",
+        "tlsType",
+        "tlsSkipVerify",
+        "strEmailHeaders",
+        "password",
+        "email"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "transactWithSubscriber:transactWithSubscriber",
+      "operationId": "transactWithSubscriber",
+      "methodName": "transactWithSubscriber",
+      "namespace": [
+        "transactional"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Transactional",
+      "arguments": {
+        "subscriberEmail": "user@example.com",
+        "subscriberId": 1,
+        "templateId": 1,
+        "fromEmail": "user@example.com",
+        "data": {},
+        "headers": [
+          {}
+        ],
+        "messenger": "messenger",
+        "contentType": "content_type"
+      },
+      "argumentOrder": [
+        "subscriberEmail",
+        "subscriberId",
+        "templateId",
+        "fromEmail",
+        "data",
+        "headers",
+        "messenger",
+        "contentType"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "updateCampaignArchiveById:updateCampaignArchiveById",
+      "operationId": "updateCampaignArchiveById",
+      "methodName": "updateCampaignArchiveById",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1,
+        "archive": false,
+        "archiveTemplateId": 1,
+        "archiveMeta": {}
+      },
+      "argumentOrder": [
+        "id",
+        "archive",
+        "archiveTemplateId",
+        "archiveMeta"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "updateCampaignById:updateCampaignById",
+      "operationId": "updateCampaignById",
+      "methodName": "updateCampaignById",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1,
+        "name": "Example Name",
+        "subject": "subject",
+        "lists": [
+          1
+        ],
+        "fromEmail": "user@example.com",
+        "contentType": "content_type",
+        "messenger": "messenger",
+        "type": "type",
+        "tags": [
+          "tags"
+        ],
+        "sendLater": false,
+        "sendAt": {
+          "headers": [
+            {}
+          ],
+          "template_id": 1
+        }
+      },
+      "argumentOrder": [
+        "id",
+        "name",
+        "subject",
+        "lists",
+        "fromEmail",
+        "contentType",
+        "messenger",
+        "type",
+        "tags",
+        "sendLater",
+        "sendAt"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "name": "Example Name",
+            "subject": "subject",
+            "lists": [
+              1
+            ],
+            "from_email": "user@example.com",
+            "messenger": "messenger",
+            "type": "type",
+            "tags": [
+              "tags"
+            ],
+            "send_later": false,
+            "send_at": {},
+            "headers": [
+              {}
+            ],
+            "template_id": 1,
+            "content_type": "content_type",
+            "body": "body",
+            "altbody": "altbody",
+            "archive": false,
+            "archive_template_id": 1,
+            "archive_meta": {}
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "updateCampaignStatusById:updateCampaignStatusById",
+      "operationId": "updateCampaignStatusById",
+      "methodName": "updateCampaignStatusById",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1,
+        "status": "scheduled"
+      },
+      "argumentOrder": [
+        "id",
+        "status"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "CampaignID": 1,
+            "views": 1,
+            "clicks": 1,
+            "lists": [
+              {
+                "id": 1,
+                "name": "Example Name"
+              }
+            ],
+            "started_at": "2024-01-01T00:00:00Z",
+            "to_send": 1,
+            "sent": 1,
+            "uuid": "uu-1",
+            "type": "regular",
+            "name": "Example Name",
+            "subject": "subject",
+            "from_email": "user@example.com",
+            "body": "body",
+            "send_at": "2024-01-01T00:00:00Z",
+            "status": "active",
+            "content_type": "richtext",
+            "tags": [
+              "tags"
+            ],
+            "template_id": 1,
+            "messenger": "messenger"
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "updateListById:updateListById",
+      "operationId": "updateListById",
+      "methodName": "updateListById",
+      "namespace": [
+        "lists"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Lists",
+      "arguments": {
+        "listId": 1,
+        "id": 1,
+        "createdAt": "2024-01-01T00:00:00Z",
+        "updatedAt": "2024-01-01T00:00:00Z",
+        "uuid": "uu-1",
+        "name": "Example Name",
+        "type": "type",
+        "optin": "optin",
+        "tags": [
+          "tags"
+        ],
+        "subscriberCount": 1,
+        "description": "example text"
+      },
+      "argumentOrder": [
+        "listId",
+        "id",
+        "createdAt",
+        "updatedAt",
+        "uuid",
+        "name",
+        "type",
+        "optin",
+        "tags",
+        "subscriberCount",
+        "description"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "uuid": "uu-1",
+            "name": "Example Name",
+            "type": "type",
+            "optin": "optin",
+            "tags": [
+              "tags"
+            ],
+            "subscriber_count": 1,
+            "description": "example text"
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "updatePreviewCampaignById:updatePreviewCampaignById",
+      "operationId": "updatePreviewCampaignById",
+      "methodName": "updatePreviewCampaignById",
+      "namespace": [
+        "campaigns"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Campaigns",
+      "arguments": {
+        "id": 1,
+        "templateId": 1,
+        "contentType": "content_type",
+        "body": "sample"
+      },
+      "argumentOrder": [
+        "id",
+        "templateId",
+        "contentType",
+        "body"
+      ],
+      "response": {
+        "kind": "text",
+        "expected": "<h3>Hi John!</h3>This is a   e-mail campaign. Your second name is Doe and you are from Bengaluru",
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "updateSettings:updateSettings",
+      "operationId": "updateSettings",
+      "methodName": "updateSettings",
+      "namespace": [
+        "settings"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\SettingsApi",
+      "arguments": {
+        "appSiteName": "Example Name",
+        "appRootUrl": "https://example.com",
+        "appLogoUrl": "https://example.com",
+        "appFaviconUrl": "https://example.com",
+        "appFromEmail": "user@example.com",
+        "appNotifyEmails": [
+          "user@example.com"
+        ],
+        "appEnablePublicSubscriptionPage": false,
+        "appEnablePublicArchive": false,
+        "appSendOptinConfirmation": false,
+        "appCheckUpdates": false,
+        "appLang": "app.lang",
+        "appBatchSize": 1,
+        "appConcurrency": 1,
+        "appMaxSendErrors": 1,
+        "appMessageRate": 30,
+        "appMessageSlidingWindow": false,
+        "appMessageSlidingWindowDuration": "example text",
+        "appMessageSlidingWindowRate": 30,
+        "privacyIndividualTracking": false,
+        "privacyUnsubscribeHeader": false,
+        "privacyAllowBlocklist": false,
+        "privacyAllowPreferences": false,
+        "privacyAllowExport": false,
+        "privacyAllowWipe": false,
+        "privacyExportable": [
+          "privacy.exportable"
+        ],
+        "privacyDomainBlocklist": [
+          {}
+        ],
+        "uploadProvider": "upload.provider",
+        "uploadFilesystemUploadPath": "upload.filesystem.upload_path",
+        "uploadFilesystemUploadUri": "https://example.com",
+        "uploadS3Url": "https://example.com",
+        "uploadS3PublicUrl": "https://example.com",
+        "uploadS3AwsAccessKeyId": "upload.s3.aws_access_key_-1",
+        "uploadS3AwsDefaultRegion": "upload.s3.aws_default_region",
+        "uploadS3Bucket": "upload.s3.bucket",
+        "uploadS3BucketDomain": "upload.s3.bucket_domain",
+        "uploadS3BucketPath": "upload.s3.bucket_path",
+        "uploadS3BucketType": "upload.s3.bucket_type",
+        "uploadS3Expiry": "upload.s3.expiry",
+        "smtp": [
+          {
+            "uuid": "uu-1",
+            "enabled": false,
+            "host": "host",
+            "hello_hostname": "Example Name",
+            "port": 1,
+            "auth_protocol": "auth_protocol",
+            "username": "Example Name",
+            "email_headers": [
+              {}
+            ],
+            "max_conns": 1,
+            "max_msg_retries": 1,
+            "idle_timeout": "2024-01-01T00:00:00Z",
+            "wait_timeout": "2024-01-01T00:00:00Z",
+            "tls_type": "tls_type",
+            "tls_skip_verify": false
+          }
+        ],
+        "messengers": [
+          {}
+        ],
+        "bounceEnabled": false,
+        "bounceWebhooksEnabled": false,
+        "bounceCount": 1,
+        "bounceAction": "bounce.action",
+        "bounceSesEnabled": false,
+        "bounceAzureEnabled": false,
+        "bounceAzureSharedSecret": "bounce.azure.shared_secret",
+        "bounceAzureSharedSecretHeader": "bounce.azure.shared_secret_header",
+        "bounceSendgridEnabled": false,
+        "bounceSendgridKey": "bounce.sendgrid_key",
+        "bounceForwardemailEnabled": false,
+        "bounceForwardemailKey": "user@example.com",
+        "bouncePostmarkEnabled": false,
+        "bouncePostmarkUsername": "Example Name",
+        "bouncePostmarkPassword": "bounce.postmark_password",
+        "bounceMailboxes": [
+          {
+            "uuid": "uu-1",
+            "enabled": false,
+            "type": "type",
+            "host": "host",
+            "port": 1,
+            "auth_protocol": "auth_protocol",
+            "return_path": "return_path",
+            "username": "Example Name",
+            "tls_enabled": false,
+            "tls_skip_verify": false,
+            "scan_interval": "scan_interval"
+          }
+        ],
+        "appearanceAdminCustomCss": "appearance.admin.custom_css",
+        "appearanceAdminCustomJs": "appearance.admin.custom_js",
+        "appearancePublicCustomCss": "appearance.public.custom_css",
+        "appearancePublicCustomJs": "appearance.public.custom_js"
+      },
+      "argumentOrder": [
+        "appSiteName",
+        "appRootUrl",
+        "appLogoUrl",
+        "appFaviconUrl",
+        "appFromEmail",
+        "appNotifyEmails",
+        "appEnablePublicSubscriptionPage",
+        "appEnablePublicArchive",
+        "appSendOptinConfirmation",
+        "appCheckUpdates",
+        "appLang",
+        "appBatchSize",
+        "appConcurrency",
+        "appMaxSendErrors",
+        "appMessageRate",
+        "appMessageSlidingWindow",
+        "appMessageSlidingWindowDuration",
+        "appMessageSlidingWindowRate",
+        "privacyIndividualTracking",
+        "privacyUnsubscribeHeader",
+        "privacyAllowBlocklist",
+        "privacyAllowPreferences",
+        "privacyAllowExport",
+        "privacyAllowWipe",
+        "privacyExportable",
+        "privacyDomainBlocklist",
+        "uploadProvider",
+        "uploadFilesystemUploadPath",
+        "uploadFilesystemUploadUri",
+        "uploadS3Url",
+        "uploadS3PublicUrl",
+        "uploadS3AwsAccessKeyId",
+        "uploadS3AwsDefaultRegion",
+        "uploadS3Bucket",
+        "uploadS3BucketDomain",
+        "uploadS3BucketPath",
+        "uploadS3BucketType",
+        "uploadS3Expiry",
+        "smtp",
+        "messengers",
+        "bounceEnabled",
+        "bounceWebhooksEnabled",
+        "bounceCount",
+        "bounceAction",
+        "bounceSesEnabled",
+        "bounceAzureEnabled",
+        "bounceAzureSharedSecret",
+        "bounceAzureSharedSecretHeader",
+        "bounceSendgridEnabled",
+        "bounceSendgridKey",
+        "bounceForwardemailEnabled",
+        "bounceForwardemailKey",
+        "bouncePostmarkEnabled",
+        "bouncePostmarkUsername",
+        "bouncePostmarkPassword",
+        "bounceMailboxes",
+        "appearanceAdminCustomCss",
+        "appearanceAdminCustomJs",
+        "appearancePublicCustomCss",
+        "appearancePublicCustomJs"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": false
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "updateSubscriberById:updateSubscriberById",
+      "operationId": "updateSubscriberById",
+      "methodName": "updateSubscriberById",
+      "namespace": [
+        "subscribers"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Subscribers",
+      "arguments": {
+        "id": 1,
+        "email": "user@example.com",
+        "name": "Example Name",
+        "status": "active",
+        "lists": [
+          1
+        ],
+        "listUuids": [
+          "list_uuids"
+        ],
+        "preconfirmSubscriptions": false,
+        "attribs": {}
+      },
+      "argumentOrder": [
+        "id",
+        "email",
+        "name",
+        "status",
+        "lists",
+        "listUuids",
+        "preconfirmSubscriptions",
+        "attribs"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "uuid": "uu-1",
+            "email": "user@example.com",
+            "name": "Example Name",
+            "attribs": {},
+            "status": "active",
+            "lists": [
+              {
+                "subscription_status": "active",
+                "id": 1,
+                "uuid": "uu-1",
+                "name": "Example Name",
+                "type": "type",
+                "tags": [
+                  "tags"
+                ],
+                "created_at": "2024-01-01T00:00:00Z",
+                "updated_at": "2024-01-01T00:00:00Z"
+              }
+            ]
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "updateTemplateById:updateTemplateById",
+      "operationId": "updateTemplateById",
+      "methodName": "updateTemplateById",
+      "namespace": [
+        "templates"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Templates",
+      "arguments": {
+        "id": 1,
+        "name": "Example Name",
+        "type": "campaign",
+        "subject": "subject",
+        "bodySource": "body_source",
+        "body": "sample"
+      },
+      "argumentOrder": [
+        "id",
+        "name",
+        "type",
+        "subject",
+        "bodySource",
+        "body"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "created_at": "2024-01-01T00:00:00Z",
+            "updated_at": "2024-01-01T00:00:00Z",
+            "name": "Example Name",
+            "body": "body",
+            "body_source": "body_source",
+            "subject": "subject",
+            "type": "type",
+            "is_default": false
+          }
+        },
+        "byteLength": 0
+      }
+    },
+    {
+      "id": "uploadMedia:uploadMedia",
+      "operationId": "uploadMedia",
+      "methodName": "uploadMedia",
+      "namespace": [
+        "media"
+      ],
+      "mode": "normal",
+      "owner": "listmonk_unofficial_sdk\\Media",
+      "arguments": {
+        "body": "ZXhhbXBsZQ=="
+      },
+      "argumentOrder": [
+        "body"
+      ],
+      "response": {
+        "kind": "json",
+        "expected": {
+          "data": {
+            "id": 1,
+            "uuid": "uu-1",
+            "filename": "Example Name",
+            "content_type": "content_type",
+            "created_at": "2024-01-01T00:00:00Z",
+            "thumb_url": "https://example.com",
+            "thumb_uri": "https://example.com",
+            "provider": "provider",
+            "meta": {},
+            "url": "https://example.com",
+            "uri": "https://example.com"
+          }
+        },
+        "byteLength": 0
+      }
+    }
+  ]
+}
