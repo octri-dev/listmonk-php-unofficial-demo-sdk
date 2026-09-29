@@ -14,11 +14,26 @@ final readonly class GetListsOrderBy implements SdkOpenEnum
     public const CREATED_AT = "created_at";
     public const UPDATED_AT = "updated_at";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class GetListsOrder implements SdkOpenEnum
@@ -26,11 +41,26 @@ final readonly class GetListsOrder implements SdkOpenEnum
     public const ASC = "ASC";
     public const DESC = "DESC";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class CreateListType implements SdkOpenEnum
@@ -38,11 +68,26 @@ final readonly class CreateListType implements SdkOpenEnum
     public const PUBLIC = "public";
     public const PRIVATE = "private";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class CreateListOptin implements SdkOpenEnum
@@ -50,11 +95,26 @@ final readonly class CreateListOptin implements SdkOpenEnum
     public const SINGLE = "single";
     public const DOUBLE = "double";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -64,11 +124,26 @@ final readonly class GetListsPerPageEnum implements SdkOpenEnum
 {
     public const ALL = "all";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class GetListsResponseData implements \JsonSerializable
@@ -129,7 +204,7 @@ class GetListsResponseData implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            results: (property_exists($data, "results") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, ListModel::class), SdkClient::arrayValue($data->results))) : SdkNotGiven::Value),
+            results: (property_exists($data, "results") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ListModel::class), SdkClient::arrayValue($data->results))) : SdkNotGiven::Value),
             total: (property_exists($data, "total") ? SdkClient::intValue($data->total) : SdkNotGiven::Value),
             perPage: (property_exists($data, "per_page") ? SdkClient::intValue($data->per_page) : SdkNotGiven::Value),
             page: (property_exists($data, "page") ? SdkClient::intValue($data->page) : SdkNotGiven::Value),

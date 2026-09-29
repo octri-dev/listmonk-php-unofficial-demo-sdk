@@ -9,14 +9,14 @@ namespace listmonk_unofficial_sdk;
 
 trait SdkClientMethodsPart5
 {
-/**
-     * Opens an incremental SSE connection. The stream resource is closed when
-     * iteration completes, fails, or the caller stops consuming early.
-     *
-     * @param array<string,mixed> $query
-     * @param array<string,mixed> $extraHeaders
-     * @return \Generator<int, SdkStreamEvent, void, void>
-     */
+    /**
+         * Opens an incremental SSE connection. The stream resource is closed when
+         * iteration completes, fails, or the caller stops consuming early.
+         *
+         * @param array<string,mixed> $query
+         * @param array<string,mixed> $extraHeaders
+         * @return \Generator<int, SdkStreamEvent, void, void>
+         */
     public static function stream(
         string $method,
         string $path,
@@ -174,15 +174,15 @@ trait SdkClientMethodsPart5
         }
     }
 
-/**
-     * Polls a long-running operation until it reaches a terminal state.
-     * $isTerminal returns ['done' => bool, 'failed' => bool, 'reason' => ?string].
-     *
-     * @template T
-     * @param callable():T $poll
-     * @param callable(T):array{done:bool,failed?:bool,reason?:?string} $isTerminal
-     * @return T
-     */
+    /**
+         * Polls a long-running operation until it reaches a terminal state.
+         * $isTerminal returns ['done' => bool, 'failed' => bool, 'reason' => ?string].
+         *
+         * @template T
+         * @param callable():T $poll
+         * @param callable(T):array{done:bool,failed?:bool,reason?:?string} $isTerminal
+         * @return T
+         */
     public static function waitFor(callable $poll, callable $isTerminal, ?WaitForConfig $config = null): mixed
     {
         $cfg = $config ?? new WaitForConfig();

@@ -12,11 +12,26 @@ final readonly class GetCampaignsOrder implements SdkOpenEnum
     public const ASC = "ASC";
     public const DESC = "DESC";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class GetCampaignsOrderBy implements SdkOpenEnum
@@ -26,11 +41,26 @@ final readonly class GetCampaignsOrderBy implements SdkOpenEnum
     public const CREATED_AT = "created_at";
     public const UPDATED_AT = "updated_at";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class GetCampaignAnalyticsType implements SdkOpenEnum
@@ -40,11 +70,26 @@ final readonly class GetCampaignAnalyticsType implements SdkOpenEnum
     public const CLICKS = "clicks";
     public const BOUNCES = "bounces";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class UpdateCampaignStatusByIdStatus implements SdkOpenEnum
@@ -54,11 +99,26 @@ final readonly class UpdateCampaignStatusByIdStatus implements SdkOpenEnum
     public const PAUSED = "paused";
     public const CANCELLED = "cancelled";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class CreateCampaignContentByIdType implements SdkOpenEnum
@@ -66,11 +126,26 @@ final readonly class CreateCampaignContentByIdType implements SdkOpenEnum
     public const REGULAR = "regular";
     public const OPTIN = "optin";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class CreateCampaignContentByIdContentType implements SdkOpenEnum
@@ -80,11 +155,26 @@ final readonly class CreateCampaignContentByIdContentType implements SdkOpenEnum
     public const MARKDOWN = "markdown";
     public const PLAIN = "plain";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -94,11 +184,26 @@ final readonly class GetCampaignsPerPageEnum implements SdkOpenEnum
 {
     public const ALL = "all";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class GetCampaignsResponseData implements \JsonSerializable
@@ -167,7 +272,7 @@ class GetCampaignsResponseData implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            results: (property_exists($data, "results") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, Campaign::class), SdkClient::arrayValue($data->results))) : SdkNotGiven::Value),
+            results: (property_exists($data, "results") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Campaign::class), SdkClient::arrayValue($data->results))) : SdkNotGiven::Value),
             query: (property_exists($data, "query") ? SdkClient::stringValue($data->query) : SdkNotGiven::Value),
             total: (property_exists($data, "total") ? SdkClient::intValue($data->total) : SdkNotGiven::Value),
             perPage: (property_exists($data, "per_page") ? SdkClient::intValue($data->per_page) : SdkNotGiven::Value),
@@ -268,7 +373,7 @@ class CreateCampaignSendAt implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            headers: (property_exists($data, "headers") ? array_values(array_map(static fn ($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->headers))) : SdkNotGiven::Value),
+            headers: (property_exists($data, "headers") ? array_values(array_map(static fn($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->headers))) : SdkNotGiven::Value),
             templateId: (property_exists($data, "template_id") ? SdkClient::floatValue($data->template_id) : SdkNotGiven::Value),
         );
     }

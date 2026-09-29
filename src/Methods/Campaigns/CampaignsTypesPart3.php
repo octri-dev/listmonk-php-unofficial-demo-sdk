@@ -158,7 +158,7 @@ class TestCampaignByIdSendAt implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            headers: (property_exists($data, "headers") ? array_values(array_map(static fn ($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->headers))) : SdkNotGiven::Value),
+            headers: (property_exists($data, "headers") ? array_values(array_map(static fn($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->headers))) : SdkNotGiven::Value),
             templateId: (property_exists($data, "template_id") ? SdkClient::floatValue($data->template_id) : SdkNotGiven::Value),
         );
     }

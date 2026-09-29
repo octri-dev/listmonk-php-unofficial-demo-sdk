@@ -177,7 +177,7 @@ final class SdkBehaviorTest extends TestCase
             }
         }
 
-        $call = static fn (): mixed => SdkClient::request(
+        $call = static fn(): mixed => SdkClient::request(
             $method,
             $path,
             config: $config,

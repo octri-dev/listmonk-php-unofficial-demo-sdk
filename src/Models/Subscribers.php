@@ -123,8 +123,8 @@ class NewSubscriber implements \JsonSerializable
             email: (property_exists($data, "email") ? SdkClient::stringValue($data->email) : SdkNotGiven::Value),
             name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? SdkClient::stringValue($data->status) : SdkNotGiven::Value),
-            lists: (property_exists($data, "lists") ? array_values(array_map(static fn ($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->lists))) : SdkNotGiven::Value),
-            listUuids: (property_exists($data, "list_uuids") ? array_values(array_map(static fn ($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->list_uuids))) : SdkNotGiven::Value),
+            lists: (property_exists($data, "lists") ? array_values(array_map(static fn($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->lists))) : SdkNotGiven::Value),
+            listUuids: (property_exists($data, "list_uuids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->list_uuids))) : SdkNotGiven::Value),
             preconfirmSubscriptions: (property_exists($data, "preconfirm_subscriptions") ? SdkClient::boolValue($data->preconfirm_subscriptions) : SdkNotGiven::Value),
             attribs: (property_exists($data, "attribs") ? SdkClient::stringMapValue($data->attribs) : SdkNotGiven::Value),
         );
@@ -261,7 +261,7 @@ class SubscriberListsItem implements \JsonSerializable
             uuid: (property_exists($data, "uuid") ? SdkClient::stringValue($data->uuid) : SdkNotGiven::Value),
             name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             type: (property_exists($data, "type") ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
-            tags: (property_exists($data, "tags") ? array_values(array_map(static fn ($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
+            tags: (property_exists($data, "tags") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
             createdAt: (property_exists($data, "created_at") ? SdkClient::stringValue($data->created_at) : SdkNotGiven::Value),
             updatedAt: (property_exists($data, "updated_at") ? SdkClient::stringValue($data->updated_at) : SdkNotGiven::Value),
         );

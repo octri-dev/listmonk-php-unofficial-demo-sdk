@@ -41,7 +41,6 @@ final readonly class SdkMultipartPart
 
 class ClientAuthConfig
 {
-
     /** @var array<string,string>|null */
     public ?array $headers = null;
 }

@@ -247,7 +247,7 @@ class SMTPTest implements \JsonSerializable
             port: (property_exists($data, "port") ? SdkClient::intValue($data->port) : SdkNotGiven::Value),
             authProtocol: (property_exists($data, "auth_protocol") ? SdkClient::stringValue($data->auth_protocol) : SdkNotGiven::Value),
             username: (property_exists($data, "username") ? SdkClient::stringValue($data->username) : SdkNotGiven::Value),
-            emailHeaders: (property_exists($data, "email_headers") ? array_values(array_map(static fn ($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->email_headers))) : SdkNotGiven::Value),
+            emailHeaders: (property_exists($data, "email_headers") ? array_values(array_map(static fn($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->email_headers))) : SdkNotGiven::Value),
             maxConns: (property_exists($data, "max_conns") ? SdkClient::intValue($data->max_conns) : SdkNotGiven::Value),
             maxMsgRetries: (property_exists($data, "max_msg_retries") ? SdkClient::intValue($data->max_msg_retries) : SdkNotGiven::Value),
             idleTimeout: (property_exists($data, "idle_timeout") ? SdkClient::stringValue($data->idle_timeout) : SdkNotGiven::Value),

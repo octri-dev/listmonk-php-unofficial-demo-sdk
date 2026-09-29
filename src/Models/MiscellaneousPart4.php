@@ -213,8 +213,8 @@ class ServerConfigData implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            messengers: (property_exists($data, "messengers") ? array_values(array_map(static fn ($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->messengers))) : SdkNotGiven::Value),
-            langs: (property_exists($data, "langs") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, ServerConfigDataLangsItem::class), SdkClient::arrayValue($data->langs))) : SdkNotGiven::Value),
+            messengers: (property_exists($data, "messengers") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->messengers))) : SdkNotGiven::Value),
+            langs: (property_exists($data, "langs") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, ServerConfigDataLangsItem::class), SdkClient::arrayValue($data->langs))) : SdkNotGiven::Value),
             lang: (property_exists($data, "lang") ? SdkClient::stringValue($data->lang) : SdkNotGiven::Value),
             update: (property_exists($data, "update") ? SdkClient::stringValue($data->update) : SdkNotGiven::Value),
             needsRestart: (property_exists($data, "needs_restart") ? SdkClient::boolValue($data->needs_restart) : SdkNotGiven::Value),

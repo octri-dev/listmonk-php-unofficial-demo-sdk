@@ -178,8 +178,8 @@ class DashboardChart implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            linkClicks: (property_exists($data, "link_clicks") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, DashboardChartLinkClicksItem::class), SdkClient::arrayValue($data->link_clicks))) : SdkNotGiven::Value),
-            campaignViews: (property_exists($data, "campaign_views") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, DashboardChartCampaignViewsItem::class), SdkClient::arrayValue($data->campaign_views))) : SdkNotGiven::Value),
+            linkClicks: (property_exists($data, "link_clicks") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, DashboardChartLinkClicksItem::class), SdkClient::arrayValue($data->link_clicks))) : SdkNotGiven::Value),
+            campaignViews: (property_exists($data, "campaign_views") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, DashboardChartCampaignViewsItem::class), SdkClient::arrayValue($data->campaign_views))) : SdkNotGiven::Value),
         );
     }
 }

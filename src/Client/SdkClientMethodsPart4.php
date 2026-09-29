@@ -9,10 +9,10 @@ namespace listmonk_unofficial_sdk;
 
 trait SdkClientMethodsPart4
 {
-/**
-     * Builds schema-aware multipart data, including repeated file fields.
-     * @param array<string, mixed> $fields
-     */
+    /**
+         * Builds schema-aware multipart data, including repeated file fields.
+         * @param array<string, mixed> $fields
+         */
     private static function encodeMultipart(array $fields, string $boundary): string
     {
         $out = '';
@@ -63,10 +63,10 @@ trait SdkClientMethodsPart4
         return $out;
     }
 
-/**
-     * @param list<string> $headers
-     * @return array{status: int, headers: array<string, string>, body: string}
-     */
+    /**
+         * @param list<string> $headers
+         * @return array{status: int, headers: array<string, string>, body: string}
+         */
     private static function dispatch(string $method, string $url, array $headers, ?string $body, float $timeout): array
     {
         if (function_exists('curl_init')) {
@@ -75,10 +75,10 @@ trait SdkClientMethodsPart4
         return self::dispatchStream($method, $url, $headers, $body, $timeout);
     }
 
-/**
-     * @param list<string> $headers
-     * @return array{status: int, headers: array<string, string>, body: string}
-     */
+    /**
+         * @param list<string> $headers
+         * @return array{status: int, headers: array<string, string>, body: string}
+         */
     private static function dispatchCurl(string $method, string $url, array $headers, ?string $body, float $timeout): array
     {
         if ($url === '' || $method === '') {
@@ -121,10 +121,10 @@ trait SdkClientMethodsPart4
         ];
     }
 
-/**
-     * @param list<string> $headers
-     * @return array{status: int, headers: array<string, string>, body: string}
-     */
+    /**
+         * @param list<string> $headers
+         * @return array{status: int, headers: array<string, string>, body: string}
+         */
     private static function dispatchStream(string $method, string $url, array $headers, ?string $body, float $timeout): array
     {
         $opts = [
@@ -169,7 +169,7 @@ trait SdkClientMethodsPart4
         ];
     }
 
-/** @return array<string, string> */
+    /** @return array<string, string> */
     private static function parseHeaders(string $rawHeaders): array
     {
         $out = [];
@@ -188,14 +188,14 @@ trait SdkClientMethodsPart4
         return $out;
     }
 
-/**
-     * PHP 8.5 deprecates direct access to the scoped $http_response_header
-     * variable. Read it indirectly only on older runtimes that do not expose
-     * http_get_last_response_headers().
-     *
-     * @param array<string, mixed> $scope
-     * @return list<string>
-     */
+    /**
+         * PHP 8.5 deprecates direct access to the scoped $http_response_header
+         * variable. Read it indirectly only on older runtimes that do not expose
+         * http_get_last_response_headers().
+         *
+         * @param array<string, mixed> $scope
+         * @return list<string>
+         */
     private static function responseHeaders(array $scope): array
     {
         $candidate = \function_exists('http_get_last_response_headers')
@@ -214,7 +214,7 @@ trait SdkClientMethodsPart4
         return $headers;
     }
 
-/** @param array<string, string> $headers */
+    /** @param array<string, string> $headers */
     private static function findRequestId(array $headers): ?string
     {
         foreach (self::REQUEST_ID_HEADERS as $name) {
@@ -225,7 +225,7 @@ trait SdkClientMethodsPart4
         return null;
     }
 
-/** @param list<int> $retryOn */
+    /** @param list<int> $retryOn */
     private static function shouldRetry(string $method, int $status, array $retryOn): bool
     {
         if (!in_array($status, $retryOn, true)) {
@@ -237,7 +237,7 @@ trait SdkClientMethodsPart4
         return in_array($status, self::ALWAYS_RETRYABLE, true);
     }
 
-private static function sleepBackoff(RetryConfig $retry, int $attempt, ?string $retryAfter): void
+    private static function sleepBackoff(RetryConfig $retry, int $attempt, ?string $retryAfter): void
     {
         $maxSec = $retry->maxBackoffSeconds;
         if ($retryAfter !== null && ctype_digit(trim($retryAfter))) {
@@ -252,7 +252,7 @@ private static function sleepBackoff(RetryConfig $retry, int $attempt, ?string $
         }
     }
 
-private static function decode(string $body, string $decoder, ?string $returnType): mixed
+    private static function decode(string $body, string $decoder, ?string $returnType): mixed
     {
         if ($decoder === 'empty') {
             return null;
@@ -270,7 +270,7 @@ private static function decode(string $body, string $decoder, ?string $returnTyp
         return self::hydrateDynamicClass($decoded ?? (object) [], $returnType);
     }
 
-private static function statusText(int $status): string
+    private static function statusText(int $status): string
     {
         return match ($status) {
             400 => 'Bad Request',
@@ -288,7 +288,7 @@ private static function statusText(int $status): string
         };
     }
 
-public static function decodeStreamPayload(string $payload, bool $associative): mixed
+    public static function decodeStreamPayload(string $payload, bool $associative): mixed
     {
         try {
             return json_decode($payload, $associative, 512, JSON_THROW_ON_ERROR);

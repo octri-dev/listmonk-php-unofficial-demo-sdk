@@ -306,7 +306,7 @@ class Campaign implements \JsonSerializable
             campaignId: (property_exists($data, "CampaignID") ? SdkClient::intValue($data->CampaignID) : SdkNotGiven::Value),
             views: (property_exists($data, "views") ? SdkClient::intValue($data->views) : SdkNotGiven::Value),
             clicks: (property_exists($data, "clicks") ? SdkClient::intValue($data->clicks) : SdkNotGiven::Value),
-            lists: (property_exists($data, "lists") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, CampaignListsItem::class), SdkClient::arrayValue($data->lists))) : SdkNotGiven::Value),
+            lists: (property_exists($data, "lists") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CampaignListsItem::class), SdkClient::arrayValue($data->lists))) : SdkNotGiven::Value),
             startedAt: (property_exists($data, "started_at") ? SdkClient::stringValue($data->started_at) : SdkNotGiven::Value),
             toSend: (property_exists($data, "to_send") ? SdkClient::intValue($data->to_send) : SdkNotGiven::Value),
             sent: (property_exists($data, "sent") ? SdkClient::intValue($data->sent) : SdkNotGiven::Value),
@@ -319,7 +319,7 @@ class Campaign implements \JsonSerializable
             sendAt: (property_exists($data, "send_at") ? SdkClient::stringValue($data->send_at) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? SdkClient::stringValue($data->status) : SdkNotGiven::Value),
             contentType: (property_exists($data, "content_type") ? SdkClient::hydrateStringEnumOrString($data->content_type, CampaignContentTypeEnum::class) : SdkNotGiven::Value),
-            tags: (property_exists($data, "tags") ? array_values(array_map(static fn ($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
+            tags: (property_exists($data, "tags") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
             templateId: (property_exists($data, "template_id") ? SdkClient::intValue($data->template_id) : SdkNotGiven::Value),
             messenger: (property_exists($data, "messenger") ? SdkClient::stringValue($data->messenger) : SdkNotGiven::Value),
         );

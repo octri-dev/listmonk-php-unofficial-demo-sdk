@@ -283,7 +283,7 @@ class Bounce implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            results: (property_exists($data, "results") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, BounceResultsItem::class), SdkClient::arrayValue($data->results))) : SdkNotGiven::Value),
+            results: (property_exists($data, "results") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, BounceResultsItem::class), SdkClient::arrayValue($data->results))) : SdkNotGiven::Value),
         );
     }
 }

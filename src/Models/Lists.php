@@ -163,7 +163,7 @@ class ListModel implements \JsonSerializable
             name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             type: (property_exists($data, "type") ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
             optin: (property_exists($data, "optin") ? SdkClient::stringValue($data->optin) : SdkNotGiven::Value),
-            tags: (property_exists($data, "tags") ? array_values(array_map(static fn ($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
+            tags: (property_exists($data, "tags") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
             subscriberCount: (property_exists($data, "subscriber_count") ? SdkClient::intValue($data->subscriber_count) : SdkNotGiven::Value),
             description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
         );
@@ -178,11 +178,26 @@ final readonly class NewListTypeEnum implements SdkOpenEnum
     public const PUBLIC = "public";
     public const PRIVATE = "private";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -193,11 +208,26 @@ final readonly class NewListOptinEnum implements SdkOpenEnum
     public const SINGLE = "single";
     public const DOUBLE = "double";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -292,7 +322,7 @@ class NewList implements \JsonSerializable
             name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             type: (property_exists($data, "type") ? SdkClient::hydrateStringEnumOrString($data->type, NewListTypeEnum::class) : SdkNotGiven::Value),
             optin: (property_exists($data, "optin") ? SdkClient::hydrateStringEnumOrString($data->optin, NewListOptinEnum::class) : SdkNotGiven::Value),
-            tags: (property_exists($data, "tags") ? array_values(array_map(static fn ($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
+            tags: (property_exists($data, "tags") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
             description: (property_exists($data, "description") ? SdkClient::stringValue($data->description) : SdkNotGiven::Value),
         );
     }

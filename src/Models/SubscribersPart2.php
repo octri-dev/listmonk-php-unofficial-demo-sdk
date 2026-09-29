@@ -152,7 +152,7 @@ class Subscriber implements \JsonSerializable
             name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             attribs: (property_exists($data, "attribs") ? SdkClient::stringMapValue($data->attribs) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? SdkClient::stringValue($data->status) : SdkNotGiven::Value),
-            lists: (property_exists($data, "lists") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, SubscriberListsItem::class), SdkClient::arrayValue($data->lists))) : SdkNotGiven::Value),
+            lists: (property_exists($data, "lists") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SubscriberListsItem::class), SdkClient::arrayValue($data->lists))) : SdkNotGiven::Value),
         );
     }
 }
@@ -247,10 +247,10 @@ class SubscriberData implements \JsonSerializable
     {
         return new self(
             email: (property_exists($data, "email") ? SdkClient::stringValue($data->email) : SdkNotGiven::Value),
-            profile: (property_exists($data, "profile") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, SubscriberProfile::class), SdkClient::arrayValue($data->profile))) : SdkNotGiven::Value),
-            subscriptions: (property_exists($data, "subscriptions") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, Subscriptions::class), SdkClient::arrayValue($data->subscriptions))) : SdkNotGiven::Value),
-            campaignViews: (property_exists($data, "campaign_views") ? array_values(array_map(static fn ($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->campaign_views))) : SdkNotGiven::Value),
-            linkClicks: (property_exists($data, "link_clicks") ? array_values(array_map(static fn ($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->link_clicks))) : SdkNotGiven::Value),
+            profile: (property_exists($data, "profile") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, SubscriberProfile::class), SdkClient::arrayValue($data->profile))) : SdkNotGiven::Value),
+            subscriptions: (property_exists($data, "subscriptions") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Subscriptions::class), SdkClient::arrayValue($data->subscriptions))) : SdkNotGiven::Value),
+            campaignViews: (property_exists($data, "campaign_views") ? array_values(array_map(static fn($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->campaign_views))) : SdkNotGiven::Value),
+            linkClicks: (property_exists($data, "link_clicks") ? array_values(array_map(static fn($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->link_clicks))) : SdkNotGiven::Value),
         );
     }
 }

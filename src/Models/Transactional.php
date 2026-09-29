@@ -137,7 +137,7 @@ class TransactionalMessage implements \JsonSerializable
             templateId: (property_exists($data, "template_id") ? SdkClient::intValue($data->template_id) : SdkNotGiven::Value),
             fromEmail: (property_exists($data, "from_email") ? SdkClient::stringValue($data->from_email) : SdkNotGiven::Value),
             data: (property_exists($data, "data") ? SdkClient::stringMapValue($data->data) : SdkNotGiven::Value),
-            headers: (property_exists($data, "headers") ? array_values(array_map(static fn ($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->headers))) : SdkNotGiven::Value),
+            headers: (property_exists($data, "headers") ? array_values(array_map(static fn($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->headers))) : SdkNotGiven::Value),
             messenger: (property_exists($data, "messenger") ? SdkClient::stringValue($data->messenger) : SdkNotGiven::Value),
             contentType: (property_exists($data, "content_type") ? SdkClient::stringValue($data->content_type) : SdkNotGiven::Value),
         );

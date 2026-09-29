@@ -9,14 +9,14 @@ namespace listmonk_unofficial_sdk;
 
 trait SdkClientMethodsPart1
 {
-/** `stripeSecretKey`, `API-Key` and `first name` become `stripe_secret_key`, `api_key`, `first_name`. */
+    /** `stripeSecretKey`, `API-Key` and `first name` become `stripe_secret_key`, `api_key`, `first_name`. */
     private static function normalizePiiKey(int|string $key): string
     {
         $split = preg_replace('/([a-z0-9])([A-Z])/', '$1_$2', (string) $key) ?? (string) $key;
         return preg_replace('/[^a-z0-9]/', '_', strtolower($split)) ?? strtolower($split);
     }
 
-private static function isPiiKey(int|string $key): bool
+    private static function isPiiKey(int|string $key): bool
     {
         $normalized = self::normalizePiiKey($key);
         if (in_array($normalized, self::PII_KEYS, true)) {
@@ -31,7 +31,7 @@ private static function isPiiKey(int|string $key): bool
         return false;
     }
 
-/** Recursively redacts common credential and direct-identifier fields. */
+    /** Recursively redacts common credential and direct-identifier fields. */
     private static function sanitizeTelemetry(mixed $value, bool $enabled): mixed
     {
         if (!$enabled || !is_array($value)) {
@@ -46,11 +46,11 @@ private static function isPiiKey(int|string $key): bool
         return $output;
     }
 
-/**
-     * @param array<string, mixed> $query
-     * @param array<string, mixed> $extraHeaders
-     * @return SdkResponse<mixed>
-     */
+    /**
+         * @param array<string, mixed> $query
+         * @param array<string, mixed> $extraHeaders
+         * @return SdkResponse<mixed>
+         */
     public static function request(
         string $method,
         string $path,
@@ -145,12 +145,12 @@ private static function isPiiKey(int|string $key): bool
         throw self::logError($cfg, $upperMethod, $path, $operationId, new SdkNetworkError(new \RuntimeException("Request '{$operationId}' produced no attempts")));
     }
 
-/**
-     * Fires the error logger (when configured) and returns the error unchanged
-     * so terminal failures can be wrapped inline at each throw site. Delivery is
-     * best-effort with a short timeout; a logging failure never masks the
-     * originating error. eventId lets the backend deduplicate retried deliveries.
-     */
+    /**
+         * Fires the error logger (when configured) and returns the error unchanged
+         * so terminal failures can be wrapped inline at each throw site. Delivery is
+         * best-effort with a short timeout; a logging failure never masks the
+         * originating error. eventId lets the backend deduplicate retried deliveries.
+         */
     private static function logError(
         ClientConfig $cfg,
         string $method,
@@ -225,12 +225,12 @@ private static function isPiiKey(int|string $key): bool
         return $error;
     }
 
-/**
-     * A few source lines around a frame, so the dashboard can show the original
-     * code for languages that are not minified (no source maps required).
-     *
-     * @return array<string, mixed>
-     */
+    /**
+         * A few source lines around a frame, so the dashboard can show the original
+         * code for languages that are not minified (no source maps required).
+         *
+         * @return array<string, mixed>
+         */
     private static function sourceContext(?string $file, int $lineno): array
     {
         if ($file === null || $file === '' || $lineno < 1 || !is_file($file)) {
@@ -253,19 +253,19 @@ private static function isPiiKey(int|string $key): bool
         return $ctx;
     }
 
-/** A frame is in-app unless it lives in an installed package (vendor) or a phar. */
+    /** A frame is in-app unless it lives in an installed package (vendor) or a phar. */
     private static function frameInApp(?string $file): bool
     {
         return $file !== null && strpos($file, '/vendor/') === false && strpos($file, 'phar://') === false;
     }
 
-/**
-     * Structured stack frames with original-source context, innermost first.
-     * PHP getTrace() locations are off-by-one (a frame is the call site of the
-     * NEXT function), so the throw location leads and each entry shifts down.
-     *
-     * @return array<int, array<string, mixed>>
-     */
+    /**
+         * Structured stack frames with original-source context, innermost first.
+         * PHP getTrace() locations are off-by-one (a frame is the call site of the
+         * NEXT function), so the throw location leads and each entry shifts down.
+         *
+         * @return array<int, array<string, mixed>>
+         */
     private static function buildFrames(\Throwable $error): array
     {
         $frames = [];
@@ -286,14 +286,14 @@ private static function isPiiKey(int|string $key): bool
         return $frames;
     }
 
-/**
-     * Composes a middleware stack around a terminal handler. The first
-     * middleware in $stack is the outermost.
-     *
-     * @param list<callable(SdkRequest, callable(SdkRequest): SdkRawResponse): SdkRawResponse> $stack
-     * @param callable(SdkRequest):SdkRawResponse $terminal
-     * @return callable(SdkRequest):SdkRawResponse
-     */
+    /**
+         * Composes a middleware stack around a terminal handler. The first
+         * middleware in $stack is the outermost.
+         *
+         * @param list<callable(SdkRequest, callable(SdkRequest): SdkRawResponse): SdkRawResponse> $stack
+         * @param callable(SdkRequest):SdkRawResponse $terminal
+         * @return callable(SdkRequest):SdkRawResponse
+         */
     private static function composeMiddleware(array $stack, callable $terminal): callable
     {
         if (empty($stack)) {
@@ -310,7 +310,7 @@ private static function isPiiKey(int|string $key): bool
         return $next;
     }
 
-/** Innermost handler: performs the actual curl exchange. */
+    /** Innermost handler: performs the actual curl exchange. */
     private static function coreTransport(SdkRequest $req, float $timeoutSeconds): SdkRawResponse
     {
         $started = microtime(true);
@@ -326,7 +326,7 @@ private static function isPiiKey(int|string $key): bool
         return $raw;
     }
 
-/** An explicit key wins and an empty one sends none; otherwise the config policy decides. */
+    /** An explicit key wins and an empty one sends none; otherwise the config policy decides. */
     private static function resolveIdempotencyKey(?string $explicit, IdempotencyConfig $idem, string $method): ?string
     {
         if ($explicit !== null) {

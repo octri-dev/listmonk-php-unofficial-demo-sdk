@@ -14,11 +14,26 @@ final readonly class GetBouncesOrderBy implements SdkOpenEnum
     public const SOURCE = "source";
     public const CREATED_AT = "created_at";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 final readonly class GetBouncesOrder implements SdkOpenEnum
@@ -26,11 +41,26 @@ final readonly class GetBouncesOrder implements SdkOpenEnum
     public const ASC = "asc";
     public const DESC = "desc";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -40,11 +70,26 @@ final readonly class GetBouncesPerPageEnum implements SdkOpenEnum
 {
     public const ALL = "all";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 class GetBouncesResponseData implements \JsonSerializable
@@ -113,7 +158,7 @@ class GetBouncesResponseData implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            results: (property_exists($data, "results") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, Bounce::class), SdkClient::arrayValue($data->results))) : SdkNotGiven::Value),
+            results: (property_exists($data, "results") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, Bounce::class), SdkClient::arrayValue($data->results))) : SdkNotGiven::Value),
             query: (property_exists($data, "query") ? SdkClient::stringValue($data->query) : SdkNotGiven::Value),
             total: (property_exists($data, "total") ? SdkClient::intValue($data->total) : SdkNotGiven::Value),
             perPage: (property_exists($data, "per_page") ? SdkClient::intValue($data->per_page) : SdkNotGiven::Value),

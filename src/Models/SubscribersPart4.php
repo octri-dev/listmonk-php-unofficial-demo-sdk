@@ -208,8 +208,8 @@ class UpdateSubscriber implements \JsonSerializable
             email: (property_exists($data, "email") ? SdkClient::stringValue($data->email) : SdkNotGiven::Value),
             name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? SdkClient::stringValue($data->status) : SdkNotGiven::Value),
-            lists: (property_exists($data, "lists") ? array_values(array_map(static fn ($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->lists))) : SdkNotGiven::Value),
-            listUuids: (property_exists($data, "list_uuids") ? array_values(array_map(static fn ($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->list_uuids))) : SdkNotGiven::Value),
+            lists: (property_exists($data, "lists") ? array_values(array_map(static fn($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->lists))) : SdkNotGiven::Value),
+            listUuids: (property_exists($data, "list_uuids") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->list_uuids))) : SdkNotGiven::Value),
             preconfirmSubscriptions: (property_exists($data, "preconfirm_subscriptions") ? SdkClient::boolValue($data->preconfirm_subscriptions) : SdkNotGiven::Value),
             attribs: (property_exists($data, "attribs") ? SdkClient::stringMapValue($data->attribs) : SdkNotGiven::Value),
         );

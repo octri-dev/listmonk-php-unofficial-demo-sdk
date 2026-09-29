@@ -153,11 +153,26 @@ final readonly class SubscriberQueryRequestActionEnum implements SdkOpenEnum
     public const REMOVE = "remove";
     public const UNSUBSCRIBE = "unsubscribe";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -169,11 +184,26 @@ final readonly class SubscriberQueryRequestStatusEnum implements SdkOpenEnum
     public const UNCONFIRMED = "unconfirmed";
     public const UNSUBSCRIBED = "unsubscribed";
     private function __construct(public string $value) {}
-    public static function from(string|int $value): static { return new self((string) $value); }
-    public static function tryFrom(string|int|null $value): ?static { return $value === null ? null : self::from($value); }
-    public function getValue(): string { return $this->value; }
-    public function jsonSerialize(): string { return $this->value; }
-    public function __toString(): string { return (string) $this->value; }
+    public static function from(string|int $value): static
+    {
+        return new self((string) $value);
+    }
+    public static function tryFrom(string|int|null $value): ?static
+    {
+        return $value === null ? null : self::from($value);
+    }
+    public function getValue(): string
+    {
+        return $this->value;
+    }
+    public function jsonSerialize(): string
+    {
+        return $this->value;
+    }
+    public function __toString(): string
+    {
+        return (string) $this->value;
+    }
 }
 
 /**
@@ -266,7 +296,7 @@ class SubscriberQueryRequest implements \JsonSerializable
     {
         return new self(
             query: (property_exists($data, "query") ? SdkClient::stringValue($data->query) : SdkNotGiven::Value),
-            ids: (property_exists($data, "ids") ? array_values(array_map(static fn ($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->ids))) : SdkNotGiven::Value),
+            ids: (property_exists($data, "ids") ? array_values(array_map(static fn($item) => SdkClient::intValue($item), SdkClient::arrayValue($data->ids))) : SdkNotGiven::Value),
             action: (property_exists($data, "action") ? SdkClient::hydrateStringEnumOrString($data->action, SubscriberQueryRequestActionEnum::class) : SdkNotGiven::Value),
             targetListIds: (property_exists($data, "target_list_ids") ? SdkClient::intValue($data->target_list_ids) : SdkNotGiven::Value),
             status: (property_exists($data, "status") ? SdkClient::hydrateStringEnumOrString($data->status, SubscriberQueryRequestStatusEnum::class) : SdkNotGiven::Value),

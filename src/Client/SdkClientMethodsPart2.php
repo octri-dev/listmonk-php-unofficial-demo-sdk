@@ -9,14 +9,14 @@ namespace listmonk_unofficial_sdk;
 
 trait SdkClientMethodsPart2
 {
-/**
-     * Replaces same-named header lines, compared case-insensitively, with the
-     * per-call values.
-     *
-     * @param list<string> $lines
-     * @param array<string, string> $overrides
-     * @return list<string>
-     */
+    /**
+         * Replaces same-named header lines, compared case-insensitively, with the
+         * per-call values.
+         *
+         * @param list<string> $lines
+         * @param array<string, string> $overrides
+         * @return list<string>
+         */
     private static function withHeaders(array $lines, array $overrides): array
     {
         if ($overrides === []) {
@@ -26,7 +26,7 @@ trait SdkClientMethodsPart2
         $names = array_diff(array_map(strtolower(...), array_keys($overrides)), ['cookie']);
         $kept = array_values(array_filter(
             $lines,
-            static fn (string $line): bool => !in_array(strtolower(trim((string) strstr($line, ':', true))), $names, true),
+            static fn(string $line): bool => !in_array(strtolower(trim((string) strstr($line, ':', true))), $names, true),
         ));
         foreach ($overrides as $name => $value) {
             $kept[] = "{$name}: {$value}";
@@ -34,7 +34,7 @@ trait SdkClientMethodsPart2
         return $kept;
     }
 
-private static function generateIdempotencyKey(): string
+    private static function generateIdempotencyKey(): string
     {
         $bytes = random_bytes(16);
         $bytes[6] = chr((ord($bytes[6]) & 0x0f) | 0x40);
@@ -43,7 +43,7 @@ private static function generateIdempotencyKey(): string
         return substr($hex, 0, 8) . '-' . substr($hex, 8, 4) . '-' . substr($hex, 12, 4) . '-' . substr($hex, 16, 4) . '-' . substr($hex, 20, 12);
     }
 
-/** @param array<string, mixed> $params */
+    /** @param array<string, mixed> $params */
     private static function buildUrl(string $base, string $path, array $params): string
     {
         // Absolute URLs (used by url-style pagination follow links) bypass the base URL.
@@ -81,11 +81,11 @@ private static function generateIdempotencyKey(): string
         return $url . $separator . implode('&', $encoded);
     }
 
-/**
-     * Renders a header parameter in OpenAPI's simple style: array items join with
-     * commas and object members become key,value pairs, or key=value pairs when
-     * exploded. An omitted or null value sends no header.
-     */
+    /**
+         * Renders a header parameter in OpenAPI's simple style: array items join with
+         * commas and object members become key,value pairs, or key=value pairs when
+         * exploded. An omitted or null value sends no header.
+         */
     public static function headerValue(mixed $value, bool $explode = false): ?string
     {
         if ($value === SdkNotGiven::Value || $value === null) {
@@ -94,12 +94,12 @@ private static function generateIdempotencyKey(): string
         return self::simpleValue(self::normalizeJson($value), $explode);
     }
 
-/**
-     * One cookie parameter in OpenAPI's form style, percent-encoded: an exploded
-     * array repeats the name and an exploded object sends one pair per member.
-     *
-     * @return list<string>
-     */
+    /**
+         * One cookie parameter in OpenAPI's form style, percent-encoded: an exploded
+         * array repeats the name and an exploded object sends one pair per member.
+         *
+         * @return list<string>
+         */
     public static function cookie(string $name, mixed $value, bool $explode = true): array
     {
         if ($value === SdkNotGiven::Value || $value === null) {
@@ -116,18 +116,18 @@ private static function generateIdempotencyKey(): string
         return $pairs;
     }
 
-/**
-     * The operation's cookies as one Cookie header value, or null when none is set.
-     *
-     * @param list<list<string>> $cookies
-     */
+    /**
+         * The operation's cookies as one Cookie header value, or null when none is set.
+         *
+         * @param list<list<string>> $cookies
+         */
     public static function cookieHeader(array $cookies): ?string
     {
         $pairs = array_merge(...$cookies);
         return $pairs === [] ? null : implode('; ', $pairs);
     }
 
-/** The JSON text of a parameter whose content is application/json. */
+    /** The JSON text of a parameter whose content is application/json. */
     public static function jsonParameter(mixed $value): mixed
     {
         if ($value === SdkNotGiven::Value || $value === null) {
@@ -136,13 +136,13 @@ private static function generateIdempotencyKey(): string
         return json_encode(self::normalizeJson($value), JSON_THROW_ON_ERROR);
     }
 
-private static function simpleValue(mixed $value, bool $explode): string
+    private static function simpleValue(mixed $value, bool $explode): string
     {
         if (!is_array($value)) {
             return self::scalarString($value);
         }
         if (array_is_list($value)) {
-            return implode(',', array_map(static fn (mixed $item): string => self::simpleValue($item, false), $value));
+            return implode(',', array_map(static fn(mixed $item): string => self::simpleValue($item, false), $value));
         }
         $members = [];
         foreach ($value as $key => $item) {
@@ -151,17 +151,17 @@ private static function simpleValue(mixed $value, bool $explode): string
         return implode(',', $members);
     }
 
-/**
-     * Joins every Cookie line into one, at the first one's place, so an apiKey
-     * cookie and the operation's cookies travel in the single Cookie header a
-     * client may send.
-     *
-     * @param list<string> $lines
-     * @return list<string>
-     */
+    /**
+         * Joins every Cookie line into one, at the first one's place, so an apiKey
+         * cookie and the operation's cookies travel in the single Cookie header a
+         * client may send.
+         *
+         * @param list<string> $lines
+         * @return list<string>
+         */
     private static function joinCookieHeaders(array $lines): array
     {
-        $isCookie = static fn (string $line): bool => strcasecmp(trim(explode(':', $line, 2)[0]), 'Cookie') === 0;
+        $isCookie = static fn(string $line): bool => strcasecmp(trim(explode(':', $line, 2)[0]), 'Cookie') === 0;
         $cookies = [];
         foreach ($lines as $line) {
             if ($isCookie($line)) {
@@ -180,7 +180,7 @@ private static function simpleValue(mixed $value, bool $explode): string
         return $joined;
     }
 
-/** Encodes one path parameter exactly once as a single RFC 3986 segment. */
+    /** Encodes one path parameter exactly once as a single RFC 3986 segment. */
     public static function encodePathSegment(mixed $value): string
     {
         // A path array uses the default `simple` style: its members comma-joined.
@@ -193,12 +193,12 @@ private static function simpleValue(mixed $value, bool $explode): string
         return rawurlencode(self::scalarString($value));
     }
 
-/**
-     * @template T of object
-     * @param list<class-string<T>> $variants
-     * @param array<string,class-string<T>> $mapping
-     * @return T
-     */
+    /**
+         * @template T of object
+         * @param list<class-string<T>> $variants
+         * @param array<string,class-string<T>> $mapping
+         * @return T
+         */
     public static function hydrateUnion(
         mixed $value,
         array $variants,
@@ -237,13 +237,13 @@ private static function simpleValue(mixed $value, bool $explode): string
         throw new \UnexpectedValueException($message, 0, $lastRejection);
     }
 
-/**
-     * @template T of object
-     * @param class-string<T> $expectedType
-     * @param list<class-string<object>> $variants
-     * @param array<string, class-string<object>> $mapping
-     * @return T
-     */
+    /**
+         * @template T of object
+         * @param class-string<T> $expectedType
+         * @param list<class-string<object>> $variants
+         * @param array<string, class-string<object>> $mapping
+         * @return T
+         */
     public static function hydrateUnionAs(
         mixed $value,
         string $expectedType,
@@ -258,16 +258,16 @@ private static function simpleValue(mixed $value, bool $explode): string
         return $result;
     }
 
-/**
-     * Tries the nominal object-union decoder first, then a structurally typed
-     * map decoder when the object does not satisfy any declared model variant.
-     *
-     * @template T
-     * @template U
-     * @param callable(mixed): T $objectDecoder
-     * @param callable(mixed): U $mapDecoder
-     * @return T|U
-     */
+    /**
+         * Tries the nominal object-union decoder first, then a structurally typed
+         * map decoder when the object does not satisfy any declared model variant.
+         *
+         * @template T
+         * @template U
+         * @param callable(mixed): T $objectDecoder
+         * @param callable(mixed): U $mapDecoder
+         * @return T|U
+         */
     public static function hydrateObjectUnionOrMap(
         mixed $value,
         callable $objectDecoder,
@@ -280,14 +280,14 @@ private static function simpleValue(mixed $value, bool $explode): string
         }
     }
 
-/**
-     * Decodes a union whose wire variants cannot be selected by JSON kind
-     * alone, such as a model object or a string-keyed map of models.
-     *
-     * @template T
-     * @param non-empty-list<callable(mixed): T> $decoders
-     * @return T
-     */
+    /**
+         * Decodes a union whose wire variants cannot be selected by JSON kind
+         * alone, such as a model object or a string-keyed map of models.
+         *
+         * @template T
+         * @param non-empty-list<callable(mixed): T> $decoders
+         * @return T
+         */
     public static function decodeUnionValue(mixed $value, array $decoders): mixed
     {
         $lastRejection = null;
@@ -301,7 +301,7 @@ private static function simpleValue(mixed $value, bool $explode): string
         throw new \UnexpectedValueException('Cannot select a union variant', 0, $lastRejection);
     }
 
-public static function stringValue(mixed $value): string
+    public static function stringValue(mixed $value): string
     {
         if (!is_string($value)) {
             throw new \UnexpectedValueException('Expected a string value');
@@ -309,7 +309,7 @@ public static function stringValue(mixed $value): string
         return $value;
     }
 
-public static function intValue(mixed $value): int
+    public static function intValue(mixed $value): int
     {
         if (!is_int($value)) {
             throw new \UnexpectedValueException('Expected an integer value');
@@ -317,7 +317,7 @@ public static function intValue(mixed $value): int
         return $value;
     }
 
-public static function floatValue(mixed $value): float
+    public static function floatValue(mixed $value): float
     {
         if (!is_float($value) && !is_int($value)) {
             throw new \UnexpectedValueException('Expected a numeric value');
@@ -325,7 +325,7 @@ public static function floatValue(mixed $value): float
         return (float) $value;
     }
 
-public static function boolValue(mixed $value): bool
+    public static function boolValue(mixed $value): bool
     {
         if (!is_bool($value)) {
             throw new \UnexpectedValueException('Expected a boolean value');
@@ -333,7 +333,7 @@ public static function boolValue(mixed $value): bool
         return $value;
     }
 
-/** @return array<array-key, mixed> */
+    /** @return array<array-key, mixed> */
     public static function arrayValue(mixed $value): array
     {
         if (!is_array($value)) {

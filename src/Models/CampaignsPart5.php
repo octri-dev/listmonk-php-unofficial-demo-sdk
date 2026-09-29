@@ -60,7 +60,7 @@ class CampaignRequestSendAt implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            headers: (property_exists($data, "headers") ? array_values(array_map(static fn ($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->headers))) : SdkNotGiven::Value),
+            headers: (property_exists($data, "headers") ? array_values(array_map(static fn($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->headers))) : SdkNotGiven::Value),
             templateId: (property_exists($data, "template_id") ? SdkClient::floatValue($data->template_id) : SdkNotGiven::Value),
         );
     }
@@ -217,12 +217,12 @@ class CampaignRequest implements \JsonSerializable
         return new self(
             name: (property_exists($data, "name") ? SdkClient::stringValue($data->name) : SdkNotGiven::Value),
             subject: (property_exists($data, "subject") ? SdkClient::stringValue($data->subject) : SdkNotGiven::Value),
-            lists: (property_exists($data, "lists") ? array_values(array_map(static fn ($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->lists))) : SdkNotGiven::Value),
+            lists: (property_exists($data, "lists") ? array_values(array_map(static fn($item) => SdkClient::floatValue($item), SdkClient::arrayValue($data->lists))) : SdkNotGiven::Value),
             fromEmail: (property_exists($data, "from_email") ? SdkClient::stringValue($data->from_email) : SdkNotGiven::Value),
             contentType: (property_exists($data, "content_type") ? SdkClient::stringValue($data->content_type) : SdkNotGiven::Value),
             messenger: (property_exists($data, "messenger") ? SdkClient::stringValue($data->messenger) : SdkNotGiven::Value),
             type: (property_exists($data, "type") ? SdkClient::stringValue($data->type) : SdkNotGiven::Value),
-            tags: (property_exists($data, "tags") ? array_values(array_map(static fn ($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
+            tags: (property_exists($data, "tags") ? array_values(array_map(static fn($item) => SdkClient::stringValue($item), SdkClient::arrayValue($data->tags))) : SdkNotGiven::Value),
             sendLater: (property_exists($data, "send_later") ? SdkClient::boolValue($data->send_later) : SdkNotGiven::Value),
             sendAt: (property_exists($data, "send_at") ? SdkClient::hydrateClass($data->send_at, CampaignRequestSendAt::class) : SdkNotGiven::Value),
         );

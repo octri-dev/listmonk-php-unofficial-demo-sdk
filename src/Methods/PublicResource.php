@@ -106,7 +106,7 @@ class PublicResource
     public static function getPublicLists(ClientConfig $clientConfig, ?RequestOptions $requestOptions = null): array
     {
 
-        return array_values(array_map(static fn ($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue(SdkClient::request('GET', "/public/lists", $clientConfig, decoder: 'json', operationId: 'getPublicLists', requestOptions: $requestOptions)->data)));
+        return array_values(array_map(static fn($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue(SdkClient::request('GET', "/public/lists", $clientConfig, decoder: 'json', operationId: 'getPublicLists', requestOptions: $requestOptions)->data)));
     }
 
 

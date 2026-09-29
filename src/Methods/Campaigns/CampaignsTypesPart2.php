@@ -99,7 +99,7 @@ class UpdateCampaignByIdSendAt implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            headers: (property_exists($data, "headers") ? array_values(array_map(static fn ($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->headers))) : SdkNotGiven::Value),
+            headers: (property_exists($data, "headers") ? array_values(array_map(static fn($item) => SdkClient::stringMapValue($item), SdkClient::arrayValue($data->headers))) : SdkNotGiven::Value),
             templateId: (property_exists($data, "template_id") ? SdkClient::floatValue($data->template_id) : SdkNotGiven::Value),
         );
     }
@@ -217,7 +217,7 @@ class GetRunningCampaignStatsResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            data: (property_exists($data, "data") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, CampaignStats::class), SdkClient::arrayValue($data->data))) : SdkNotGiven::Value),
+            data: (property_exists($data, "data") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CampaignStats::class), SdkClient::arrayValue($data->data))) : SdkNotGiven::Value),
         );
     }
 }
@@ -256,7 +256,7 @@ class GetCampaignAnalyticsResponse implements \JsonSerializable
     public static function fromObject(object $data): self
     {
         return new self(
-            data: (property_exists($data, "data") ? array_values(array_map(static fn ($item) => SdkClient::hydrateClass($item, CampaignAnalyticsCount::class), SdkClient::arrayValue($data->data))) : SdkNotGiven::Value),
+            data: (property_exists($data, "data") ? array_values(array_map(static fn($item) => SdkClient::hydrateClass($item, CampaignAnalyticsCount::class), SdkClient::arrayValue($data->data))) : SdkNotGiven::Value),
         );
     }
 }

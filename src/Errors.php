@@ -197,44 +197,28 @@ class SdkHttpError extends SdkError
 }
 
 /** Thrown for an HTTP 400 response. */
-final class SdkBadRequestError extends SdkHttpError
-{
-}
+final class SdkBadRequestError extends SdkHttpError {}
 
 /** Thrown for an HTTP 401 response. */
-final class SdkUnauthorizedError extends SdkHttpError
-{
-}
+final class SdkUnauthorizedError extends SdkHttpError {}
 
 /** Thrown for an HTTP 403 response. */
-final class SdkPermissionDeniedError extends SdkHttpError
-{
-}
+final class SdkPermissionDeniedError extends SdkHttpError {}
 
 /** Thrown for an HTTP 404 response. */
-final class SdkNotFoundError extends SdkHttpError
-{
-}
+final class SdkNotFoundError extends SdkHttpError {}
 
 /** Thrown for an HTTP 409 response. */
-final class SdkConflictError extends SdkHttpError
-{
-}
+final class SdkConflictError extends SdkHttpError {}
 
 /** Thrown for an HTTP 422 response. */
-final class SdkUnprocessableEntityError extends SdkHttpError
-{
-}
+final class SdkUnprocessableEntityError extends SdkHttpError {}
 
 /** Thrown for an HTTP 429 response. */
-final class SdkRateLimitError extends SdkHttpError
-{
-}
+final class SdkRateLimitError extends SdkHttpError {}
 
 /** Thrown for any HTTP 5xx response. */
-final class SdkInternalServerError extends SdkHttpError
-{
-}
+final class SdkInternalServerError extends SdkHttpError {}
 
 /**
  * Thrown when an operation cannot be authenticated by this build: every

@@ -9,7 +9,7 @@ namespace listmonk_unofficial_sdk;
 
 trait SdkClientMethodsPart3
 {
-/** @return array<string, mixed> */
+    /** @return array<string, mixed> */
     public static function stringMapValue(mixed $value): array
     {
         // A JSON object's names are all strings, so the numeric ones PHP turns
@@ -33,7 +33,7 @@ trait SdkClientMethodsPart3
         return $result;
     }
 
-public static function objectValue(mixed $value): object
+    public static function objectValue(mixed $value): object
     {
         if (!is_object($value)) {
             throw new \UnexpectedValueException('Expected an object value');
@@ -41,7 +41,7 @@ public static function objectValue(mixed $value): object
         return $value;
     }
 
-public static function enumValue(mixed $value): int|string
+    public static function enumValue(mixed $value): int|string
     {
         if (!is_int($value) && !is_string($value)) {
             throw new \UnexpectedValueException('Expected a backed-enum value');
@@ -49,11 +49,11 @@ public static function enumValue(mixed $value): int|string
         return $value;
     }
 
-/**
-     * @template T of object
-     * @param class-string<T> $className
-     * @return T
-     */
+    /**
+         * @template T of object
+         * @param class-string<T> $className
+         * @return T
+         */
     public static function hydrateClass(mixed $value, string $className): object
     {
         $object = self::objectValue($value);
@@ -67,7 +67,7 @@ public static function enumValue(mixed $value): int|string
         return $result;
     }
 
-public static function hydrateDynamicClass(mixed $value, string $className): object
+    public static function hydrateDynamicClass(mixed $value, string $className): object
     {
         $object = self::objectValue($value);
         if (!method_exists($className, 'fromObject')) {
@@ -80,25 +80,25 @@ public static function hydrateDynamicClass(mixed $value, string $className): obj
         return $result;
     }
 
-/**
-     * @template T of SdkWireEnum
-     * @param class-string<T> $className
-     * @return T
-     */
+    /**
+         * @template T of SdkWireEnum
+         * @param class-string<T> $className
+         * @return T
+         */
     public static function hydrateEnum(mixed $value, string $className): SdkWireEnum
     {
         return $className::from(self::enumValue($value));
     }
 
-/**
-     * Decodes a schema union containing both an open string and a string enum.
-     * Known enum values retain their generated type; extension values remain
-     * strings so forward-compatible APIs do not reject newly introduced values.
-     *
-     * @template T of SdkWireEnum
-     * @param class-string<T> $className
-     * @return T|string
-     */
+    /**
+         * Decodes a schema union containing both an open string and a string enum.
+         * Known enum values retain their generated type; extension values remain
+         * strings so forward-compatible APIs do not reject newly introduced values.
+         *
+         * @template T of SdkWireEnum
+         * @param class-string<T> $className
+         * @return T|string
+         */
     public static function hydrateStringEnumOrString(mixed $value, string $className): SdkWireEnum|string
     {
         $string = self::stringValue($value);
@@ -109,11 +109,11 @@ public static function hydrateDynamicClass(mixed $value, string $className): obj
         }
     }
 
-/**
-     * @template T of SdkWireEnum
-     * @param list<class-string<T>> $classNames
-     * @return T
-     */
+    /**
+         * @template T of SdkWireEnum
+         * @param list<class-string<T>> $classNames
+         * @return T
+         */
     public static function hydrateEnumUnion(mixed $value, array $classNames): SdkWireEnum
     {
         $wireValue = self::enumValue($value);
@@ -127,11 +127,11 @@ public static function hydrateDynamicClass(mixed $value, string $className): obj
         throw new \ValueError('Value is not a member of the declared enum union');
     }
 
-/**
-     * @template T of SdkWireEnum
-     * @param list<class-string<T>> $classNames
-     * @return T|string
-     */
+    /**
+         * @template T of SdkWireEnum
+         * @param list<class-string<T>> $classNames
+         * @return T|string
+         */
     public static function hydrateStringEnumUnion(mixed $value, array $classNames): SdkWireEnum|string
     {
         $wireValue = self::stringValue($value);
@@ -142,12 +142,12 @@ public static function hydrateDynamicClass(mixed $value, string $className): obj
         }
     }
 
-/**
-     * @template T
-     * @param array<string, mixed> $values
-     * @param callable(mixed): T $decoder
-     * @return array<string, T>
-     */
+    /**
+         * @template T
+         * @param array<string, mixed> $values
+         * @param callable(mixed): T $decoder
+         * @return array<string, T>
+         */
     public static function mapValues(array $values, callable $decoder): array
     {
         $result = [];
@@ -157,12 +157,12 @@ public static function hydrateDynamicClass(mixed $value, string $className): obj
         return $result;
     }
 
-/**
-     * @template T of object
-     * @param SdkResponse<mixed> $response
-     * @param class-string<T> $className
-     * @return T
-     */
+    /**
+         * @template T of object
+         * @param SdkResponse<mixed> $response
+         * @param class-string<T> $className
+         * @return T
+         */
     public static function typedData(SdkResponse $response, string $className): object
     {
         $data = $response->data;
@@ -172,10 +172,10 @@ public static function hydrateDynamicClass(mixed $value, string $className): obj
         return $data;
     }
 
-/**
-     * @param array<string, string> $authHeaders
-     * @return list<string>
-     */
+    /**
+         * @param array<string, string> $authHeaders
+         * @return list<string>
+         */
     private static function buildHeaders(ClientConfig $cfg, array $authHeaders, string $contentType, bool $hasBody): array
     {
         $headers = [];
@@ -199,7 +199,7 @@ public static function hydrateDynamicClass(mixed $value, string $className): obj
      * @return array{0: array<string,string>, 1: array<string,mixed>}
      */
 
-private static function resolveAuth(ClientConfig $cfg, string $operationId = ''): array
+    private static function resolveAuth(ClientConfig $cfg, string $operationId = ''): array
     {
         $headers = [];
         $query = [];
@@ -213,7 +213,7 @@ private static function resolveAuth(ClientConfig $cfg, string $operationId = '')
         return [$headers, $query];
     }
 
-/** @return array{0:?string,1:string} */
+    /** @return array{0:?string,1:string} */
     private static function prepareBody(mixed $body, string $contentType): array
     {
         if ($body === SdkNotGiven::Value) {
@@ -229,7 +229,7 @@ private static function resolveAuth(ClientConfig $cfg, string $operationId = '')
         return [self::encodeBody($body, $contentType), $contentType];
     }
 
-private static function encodeBody(mixed $body, string $contentType): ?string
+    private static function encodeBody(mixed $body, string $contentType): ?string
     {
         if ($body === SdkNotGiven::Value) {
             return null;
@@ -256,7 +256,7 @@ private static function encodeBody(mixed $body, string $contentType): ?string
         return self::scalarString($body);
     }
 
-/** @return array<string, mixed> */
+    /** @return array<string, mixed> */
     private static function multipartFields(mixed $value): array
     {
         if (!is_array($value)) {
@@ -272,7 +272,7 @@ private static function encodeBody(mixed $body, string $contentType): ?string
         return $fields;
     }
 
-private static function normalizeJson(mixed $value): mixed
+    private static function normalizeJson(mixed $value): mixed
     {
         if ($value === SdkNotGiven::Value) {
             return SdkNotGiven::Value;
@@ -304,7 +304,7 @@ private static function normalizeJson(mixed $value): mixed
         return $value;
     }
 
-private static function scalarString(mixed $value): string
+    private static function scalarString(mixed $value): string
     {
         if ($value instanceof \BackedEnum) {
             return self::scalarString($value->value);
