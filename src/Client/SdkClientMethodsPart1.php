@@ -95,7 +95,7 @@ private static function isPiiKey(int|string $key): bool
                     $headers[] = "{$k}: " . self::scalarString($wireValue);
                 }
             }
-            $headers = self::withHeaders($headers, $requestOptions->headers ?? []);
+            $headers = self::joinCookieHeaders(self::withHeaders($headers, $requestOptions->headers ?? []));
             if ($idempotencyKey !== null) {
                 $headers[] = "{$idem->headerName}: {$idempotencyKey}";
             }

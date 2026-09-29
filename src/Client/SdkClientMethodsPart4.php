@@ -10,6 +10,118 @@ namespace listmonk_unofficial_sdk;
 trait SdkClientMethodsPart4
 {
 /**
+     * Builds schema-aware multipart data, including repeated file fields.
+     * @param array<string, mixed> $fields
+     */
+    private static function encodeMultipart(array $fields, string $boundary): string
+    {
+        $out = '';
+        $append = function (string $key, mixed $value) use (&$append, &$out, $boundary): void {
+            $contentType = null;
+            if ($value instanceof SdkMultipartPart) {
+                $contentType = $value->contentType;
+                $value = $value->value;
+            }
+            if ($value === SdkNotGiven::Value) {
+                return;
+            }
+            if (is_array($value) && array_is_list($value)) {
+                foreach ($value as $item) {
+                    $append($key, $item);
+                }
+                return;
+            }
+            $safeKey = addcslashes($key, "\\\"");
+            $disposition = "Content-Disposition: form-data; name=\"{$safeKey}\"";
+            if ($value instanceof SdkUploadFile) {
+                $safeFilename = addcslashes($value->filename, "\\\"");
+                $disposition .= "; filename=\"{$safeFilename}\"";
+                $contentType = $value->contentType;
+                $payload = $value->data;
+            } elseif (
+                $contentType !== null ||
+                is_array($value) ||
+                (is_object($value) && !($value instanceof \BackedEnum) && !($value instanceof SdkOpenEnum))
+            ) {
+                $contentType ??= 'application/json';
+                $payload = json_encode(self::normalizeJson($value), JSON_THROW_ON_ERROR);
+            } elseif ($value === null) {
+                $payload = 'null';
+            } else {
+                $payload = self::scalarString($value);
+            }
+            $out .= "--{$boundary}\r\n{$disposition}\r\n";
+            if ($contentType !== null) {
+                $out .= "Content-Type: {$contentType}\r\n";
+            }
+            $out .= "\r\n{$payload}\r\n";
+        };
+        foreach ($fields as $key => $value) {
+            $append((string) $key, $value);
+        }
+        $out .= "--{$boundary}--\r\n";
+        return $out;
+    }
+
+/**
+     * @param list<string> $headers
+     * @return array{status: int, headers: array<string, string>, body: string}
+     */
+    private static function dispatch(string $method, string $url, array $headers, ?string $body, float $timeout): array
+    {
+        if (function_exists('curl_init')) {
+            return self::dispatchCurl($method, $url, $headers, $body, $timeout);
+        }
+        return self::dispatchStream($method, $url, $headers, $body, $timeout);
+    }
+
+/**
+     * @param list<string> $headers
+     * @return array{status: int, headers: array<string, string>, body: string}
+     */
+    private static function dispatchCurl(string $method, string $url, array $headers, ?string $body, float $timeout): array
+    {
+        if ($url === '' || $method === '') {
+            throw new SdkNetworkError(new \InvalidArgumentException('HTTP method and URL must not be empty'));
+        }
+        $ch = curl_init();
+        if ($ch === false) {
+            throw new SdkNetworkError(new \RuntimeException('failed to initialise cURL'));
+        }
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, true);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+        curl_setopt($ch, CURLOPT_TIMEOUT, (int) ceil($timeout));
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, (int) ceil($timeout));
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        if ($body !== null) {
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
+        }
+
+        $response = curl_exec($ch);
+        $errno = curl_errno($ch);
+        $errMsg = curl_error($ch);
+        $statusCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $headerSize = (int) curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+
+        if ($errno === CURLE_OPERATION_TIMEDOUT) {
+            throw new SdkTimeoutError($timeout);
+        }
+        if ($errno !== 0 || !is_string($response)) {
+            throw new SdkNetworkError(new \RuntimeException("cURL error: {$errMsg}"));
+        }
+
+        $rawHeaders = substr($response, 0, $headerSize);
+        $bodyText = substr($response, $headerSize);
+        return [
+            'status' => $statusCode,
+            'headers' => self::parseHeaders($rawHeaders),
+            'body' => $bodyText,
+        ];
+    }
+
+/**
      * @param list<string> $headers
      * @return array{status: int, headers: array<string, string>, body: string}
      */
@@ -182,170 +294,6 @@ public static function decodeStreamPayload(string $payload, bool $associative): 
             return json_decode($payload, $associative, 512, JSON_THROW_ON_ERROR);
         } catch (\JsonException $error) {
             throw new SdkStreamParseError($payload, $error);
-        }
-    }
-
-/**
-     * Opens an incremental SSE connection. The stream resource is closed when
-     * iteration completes, fails, or the caller stops consuming early.
-     *
-     * @param array<string,mixed> $query
-     * @param array<string,mixed> $extraHeaders
-     * @return \Generator<int, SdkStreamEvent, void, void>
-     */
-    public static function stream(
-        string $method,
-        string $path,
-        ?ClientConfig $config = null,
-        array $query = [],
-        mixed $body = SdkNotGiven::Value,
-        string $contentType = 'application/json',
-        array $extraHeaders = [],
-        string $operationId = '',
-        string $streamFormat = 'sse',
-        string $streamMediaType = 'text/event-stream',
-        ?RequestOptions $requestOptions = null,
-    ): \Generator {
-        $cfg = $config ?? SdkConfig::getConfig();
-        $upperMethod = strtoupper($method);
-        [$authHeaders, $authQuery] = self::resolveAuth($cfg, $operationId);
-        $mergedQuery = empty($authQuery) ? $query : array_merge($query, $authQuery);
-        $url = self::buildUrl($cfg->baseUrl ?? '', $path, $mergedQuery);
-        [$bodyString, $contentType] = self::prepareBody($body, $contentType);
-        $headers = self::buildHeaders($cfg, $authHeaders, $contentType, $bodyString !== null);
-        $headers[] = "Accept: {$streamMediaType}";
-        foreach ($extraHeaders as $name => $value) {
-            if ($value === SdkNotGiven::Value || $value === null) {
-                continue;
-            }
-            $wireValue = $value instanceof \BackedEnum
-                ? $value->value
-                : ($value instanceof SdkOpenEnum ? $value->getValue() : $value);
-            $headers[] = "{$name}: " . self::scalarString($wireValue);
-        }
-        $headers = self::withHeaders($headers, $requestOptions->headers ?? []);
-
-        $context = stream_context_create([
-            'http' => [
-                'method' => $upperMethod,
-                'header' => implode("\r\n", $headers),
-                'content' => $bodyString ?? '',
-                'timeout' => $cfg->timeoutSeconds,
-                'ignore_errors' => true,
-                'protocol_version' => 1.1,
-            ],
-        ]);
-        $resource = @fopen($url, 'rb', false, $context);
-        if ($resource === false) {
-            $lastError = error_get_last();
-            $message = $lastError['message'] ?? "stream request '{$operationId}' failed";
-            if (str_contains(strtolower($message), 'timed out')) {
-                throw new SdkTimeoutError($cfg->timeoutSeconds);
-            }
-            throw new SdkNetworkError(new \RuntimeException($message));
-        }
-
-        $statusCode = 200;
-        $responseHeaders = [];
-        $rawHeaders = self::responseHeaders(get_defined_vars());
-        foreach ($rawHeaders as $line) {
-            if (preg_match('#^HTTP/[\d.]+\s+(\d+)#', $line, $matches)) {
-                $statusCode = (int) $matches[1];
-                continue;
-            }
-            $colon = strpos($line, ':');
-            if ($colon !== false) {
-                $responseHeaders[strtolower(trim(substr($line, 0, $colon)))] = trim(substr($line, $colon + 1));
-            }
-        }
-
-        try {
-            if ($statusCode < 200 || $statusCode >= 300) {
-                $errorBody = stream_get_contents($resource);
-                throw SdkHttpError::forStatus(
-                    $statusCode,
-                    self::statusText($statusCode),
-                    is_string($errorBody) ? $errorBody : '',
-                    $responseHeaders,
-                    self::findRequestId($responseHeaders),
-                );
-            }
-
-            if ($streamFormat === 'chunked') {
-                while (!feof($resource)) {
-                    $chunk = fread($resource, 8192);
-                    if ($chunk === false) {
-                        throw new SdkNetworkError(new \RuntimeException('stream read failed'));
-                    }
-                    if ($chunk !== '') {
-                        $event = new SdkStreamEvent();
-                        $event->event = 'chunk';
-                        $event->data = $chunk;
-                        yield $event;
-                    }
-                }
-                return;
-            }
-            if ($streamFormat === 'ndjson') {
-                while (($line = fgets($resource)) !== false) {
-                    $line = trim($line);
-                    if ($line !== '') {
-                        $event = new SdkStreamEvent();
-                        $event->event = 'message';
-                        $event->data = $line;
-                        yield $event;
-                    }
-                }
-                return;
-            }
-
-            $eventName = null;
-            $eventId = null;
-            $eventRetry = null;
-            $dataLines = [];
-            while (($line = fgets($resource)) !== false) {
-                $line = rtrim($line, "\r\n");
-                if ($line === '') {
-                    if (!empty($dataLines)) {
-                        $event = new SdkStreamEvent();
-                        $event->event = $eventName ?? 'message';
-                        $event->data = implode("\n", $dataLines);
-                        $event->id = $eventId;
-                        $event->retry = $eventRetry;
-                        yield $event;
-                        $dataLines = [];
-                        $eventName = null;
-                    }
-                    continue;
-                }
-                if (str_starts_with($line, ':')) {
-                    continue;
-                }
-                $colon = strpos($line, ':');
-                $field = $colon === false ? $line : substr($line, 0, $colon);
-                $value = $colon === false ? '' : ltrim(substr($line, $colon + 1), ' ');
-                match ($field) {
-                    'event' => $eventName = $value,
-                    'data' => $dataLines[] = $value,
-                    'id' => $eventId = $value,
-                    'retry' => $eventRetry = ctype_digit($value) ? (int) $value : $eventRetry,
-                    default => null,
-                };
-            }
-            $meta = stream_get_meta_data($resource);
-            if ($meta['timed_out'] === true) {
-                throw new SdkTimeoutError($cfg->timeoutSeconds);
-            }
-            if (!empty($dataLines)) {
-                $event = new SdkStreamEvent();
-                $event->event = $eventName ?? 'message';
-                $event->data = implode("\n", $dataLines);
-                $event->id = $eventId;
-                $event->retry = $eventRetry;
-                yield $event;
-            }
-        } finally {
-            fclose($resource);
         }
     }
 }

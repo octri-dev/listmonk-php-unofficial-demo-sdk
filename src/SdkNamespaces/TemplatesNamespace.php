@@ -100,16 +100,14 @@ class TemplatesNamespace
     /**
      * Renders an HTML preview for a template identified by its integer ID. Supply `template_type` and `body` as form-encoded preview parameters.
      *
-     * renders the HTML preview of a template. id: The id value of the template you want to get. · templateType: type of template · body: template body
+     * renders the HTML preview of a template. id: The id value of the template you want to get.
      *
      * @param int $id
-     * @param string|SdkNotGiven $templateType
-     * @param string|SdkNotGiven $body
      * @return string
      */
-    public function previewById(int $id, string|SdkNotGiven $templateType = SdkNotGiven::Value, string|SdkNotGiven $body = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): string
+    public function previewById(int $id, ?RequestOptions $requestOptions = null): string
     {
-        return Templates::previewTemplateById($this->clientConfig, $id, $templateType, $body, $requestOptions);
+        return Templates::previewTemplateById($this->clientConfig, $id, $requestOptions);
     }
     /**
      * Sets the specified template as the default template. Use the template's integer identifier to select which template to make the default.

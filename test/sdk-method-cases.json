@@ -2701,14 +2701,10 @@
       "mode": "normal",
       "owner": "listmonk_unofficial_sdk\\Templates",
       "arguments": {
-        "id": 1,
-        "templateType": "template_type",
-        "body": "sample"
+        "id": 1
       },
       "argumentOrder": [
-        "id",
-        "templateType",
-        "body"
+        "id"
       ],
       "response": {
         "kind": "text",

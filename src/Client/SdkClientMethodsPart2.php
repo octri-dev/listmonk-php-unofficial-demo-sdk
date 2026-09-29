@@ -22,7 +22,8 @@ trait SdkClientMethodsPart2
         if ($overrides === []) {
             return $lines;
         }
-        $names = array_map(strtolower(...), array_keys($overrides));
+        // A Cookie override joins the others in joinCookieHeaders instead.
+        $names = array_diff(array_map(strtolower(...), array_keys($overrides)), ['cookie']);
         $kept = array_values(array_filter(
             $lines,
             static fn (string $line): bool => !in_array(strtolower(trim((string) strstr($line, ':', true))), $names, true),
@@ -78,6 +79,105 @@ private static function generateIdempotencyKey(): string
         // fragment, so preserve it and use `&` rather than a second query marker.
         $separator = str_contains($url, '?') ? '&' : '?';
         return $url . $separator . implode('&', $encoded);
+    }
+
+/**
+     * Renders a header parameter in OpenAPI's simple style: array items join with
+     * commas and object members become key,value pairs, or key=value pairs when
+     * exploded. An omitted or null value sends no header.
+     */
+    public static function headerValue(mixed $value, bool $explode = false): ?string
+    {
+        if ($value === SdkNotGiven::Value || $value === null) {
+            return null;
+        }
+        return self::simpleValue(self::normalizeJson($value), $explode);
+    }
+
+/**
+     * One cookie parameter in OpenAPI's form style, percent-encoded: an exploded
+     * array repeats the name and an exploded object sends one pair per member.
+     *
+     * @return list<string>
+     */
+    public static function cookie(string $name, mixed $value, bool $explode = true): array
+    {
+        if ($value === SdkNotGiven::Value || $value === null) {
+            return [];
+        }
+        $wire = self::normalizeJson($value);
+        if (!$explode || !is_array($wire)) {
+            return [$name . '=' . rawurlencode(self::simpleValue($wire, false))];
+        }
+        $pairs = [];
+        foreach ($wire as $key => $item) {
+            $pairs[] = (array_is_list($wire) ? $name : $key) . '=' . rawurlencode(self::simpleValue($item, false));
+        }
+        return $pairs;
+    }
+
+/**
+     * The operation's cookies as one Cookie header value, or null when none is set.
+     *
+     * @param list<list<string>> $cookies
+     */
+    public static function cookieHeader(array $cookies): ?string
+    {
+        $pairs = array_merge(...$cookies);
+        return $pairs === [] ? null : implode('; ', $pairs);
+    }
+
+/** The JSON text of a parameter whose content is application/json. */
+    public static function jsonParameter(mixed $value): mixed
+    {
+        if ($value === SdkNotGiven::Value || $value === null) {
+            return $value;
+        }
+        return json_encode(self::normalizeJson($value), JSON_THROW_ON_ERROR);
+    }
+
+private static function simpleValue(mixed $value, bool $explode): string
+    {
+        if (!is_array($value)) {
+            return self::scalarString($value);
+        }
+        if (array_is_list($value)) {
+            return implode(',', array_map(static fn (mixed $item): string => self::simpleValue($item, false), $value));
+        }
+        $members = [];
+        foreach ($value as $key => $item) {
+            $members[] = $key . ($explode ? '=' : ',') . self::simpleValue($item, false);
+        }
+        return implode(',', $members);
+    }
+
+/**
+     * Joins every Cookie line into one, at the first one's place, so an apiKey
+     * cookie and the operation's cookies travel in the single Cookie header a
+     * client may send.
+     *
+     * @param list<string> $lines
+     * @return list<string>
+     */
+    private static function joinCookieHeaders(array $lines): array
+    {
+        $isCookie = static fn (string $line): bool => strcasecmp(trim(explode(':', $line, 2)[0]), 'Cookie') === 0;
+        $cookies = [];
+        foreach ($lines as $line) {
+            if ($isCookie($line)) {
+                $cookies[] = trim(explode(':', $line, 2)[1] ?? '');
+            }
+        }
+        $joined = [];
+        foreach ($lines as $line) {
+            if (!$isCookie($line)) {
+                $joined[] = $line;
+            } elseif ($cookies !== []) {
+                $joined[] = 'Cookie: ' . implode('; ', $cookies);
+                $cookies = [];
+            }
+        }
+        return $joined;
     }
 
 /** Encodes one path parameter exactly once as a single RFC 3986 segment. */
@@ -240,86 +340,5 @@ public static function boolValue(mixed $value): bool
             throw new \UnexpectedValueException('Expected an array value');
         }
         return $value;
-    }
-
-/** @return array<string, mixed> */
-    public static function stringMapValue(mixed $value): array
-    {
-        // A JSON object's names are all strings, so the numeric ones PHP turns
-        // into int keys (Asana keys custom fields by gid) are not the stray keys
-        // rejected below.
-        if (is_object($value)) {
-            $result = [];
-            foreach (get_object_vars($value) as $key => $item) {
-                $result[(string) $key] = $item;
-            }
-            return $result;
-        }
-        $map = self::arrayValue($value);
-        $result = [];
-        foreach ($map as $key => $item) {
-            if (!is_string($key)) {
-                throw new \UnexpectedValueException('Expected string map keys');
-            }
-            $result[$key] = $item;
-        }
-        return $result;
-    }
-
-public static function objectValue(mixed $value): object
-    {
-        if (!is_object($value)) {
-            throw new \UnexpectedValueException('Expected an object value');
-        }
-        return $value;
-    }
-
-public static function enumValue(mixed $value): int|string
-    {
-        if (!is_int($value) && !is_string($value)) {
-            throw new \UnexpectedValueException('Expected a backed-enum value');
-        }
-        return $value;
-    }
-
-/**
-     * @template T of object
-     * @param class-string<T> $className
-     * @return T
-     */
-    public static function hydrateClass(mixed $value, string $className): object
-    {
-        $object = self::objectValue($value);
-        if (!method_exists($className, 'fromObject')) {
-            throw new \LogicException("{$className} does not implement fromObject");
-        }
-        $result = $className::fromObject($object);
-        if (!$result instanceof $className) {
-            throw new \UnexpectedValueException("{$className} returned an invalid hydrated value");
-        }
-        return $result;
-    }
-
-public static function hydrateDynamicClass(mixed $value, string $className): object
-    {
-        $object = self::objectValue($value);
-        if (!method_exists($className, 'fromObject')) {
-            throw new \LogicException("{$className} does not implement fromObject");
-        }
-        $result = $className::fromObject($object);
-        if (!is_object($result)) {
-            throw new \UnexpectedValueException("{$className} returned an invalid hydrated value");
-        }
-        return $result;
-    }
-
-/**
-     * @template T of SdkWireEnum
-     * @param class-string<T> $className
-     * @return T
-     */
-    public static function hydrateEnum(mixed $value, string $className): SdkWireEnum
-    {
-        return $className::from(self::enumValue($value));
     }
 }

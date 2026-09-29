@@ -9,6 +9,87 @@ namespace listmonk_unofficial_sdk;
 
 trait SdkClientMethodsPart3
 {
+/** @return array<string, mixed> */
+    public static function stringMapValue(mixed $value): array
+    {
+        // A JSON object's names are all strings, so the numeric ones PHP turns
+        // into int keys (Asana keys custom fields by gid) are not the stray keys
+        // rejected below.
+        if (is_object($value)) {
+            $result = [];
+            foreach (get_object_vars($value) as $key => $item) {
+                $result[(string) $key] = $item;
+            }
+            return $result;
+        }
+        $map = self::arrayValue($value);
+        $result = [];
+        foreach ($map as $key => $item) {
+            if (!is_string($key)) {
+                throw new \UnexpectedValueException('Expected string map keys');
+            }
+            $result[$key] = $item;
+        }
+        return $result;
+    }
+
+public static function objectValue(mixed $value): object
+    {
+        if (!is_object($value)) {
+            throw new \UnexpectedValueException('Expected an object value');
+        }
+        return $value;
+    }
+
+public static function enumValue(mixed $value): int|string
+    {
+        if (!is_int($value) && !is_string($value)) {
+            throw new \UnexpectedValueException('Expected a backed-enum value');
+        }
+        return $value;
+    }
+
+/**
+     * @template T of object
+     * @param class-string<T> $className
+     * @return T
+     */
+    public static function hydrateClass(mixed $value, string $className): object
+    {
+        $object = self::objectValue($value);
+        if (!method_exists($className, 'fromObject')) {
+            throw new \LogicException("{$className} does not implement fromObject");
+        }
+        $result = $className::fromObject($object);
+        if (!$result instanceof $className) {
+            throw new \UnexpectedValueException("{$className} returned an invalid hydrated value");
+        }
+        return $result;
+    }
+
+public static function hydrateDynamicClass(mixed $value, string $className): object
+    {
+        $object = self::objectValue($value);
+        if (!method_exists($className, 'fromObject')) {
+            throw new \LogicException("{$className} does not implement fromObject");
+        }
+        $result = $className::fromObject($object);
+        if (!is_object($result)) {
+            throw new \UnexpectedValueException("{$className} returned an invalid hydrated value");
+        }
+        return $result;
+    }
+
+/**
+     * @template T of SdkWireEnum
+     * @param class-string<T> $className
+     * @return T
+     */
+    public static function hydrateEnum(mixed $value, string $className): SdkWireEnum
+    {
+        return $className::from(self::enumValue($value));
+    }
+
 /**
      * Decodes a schema union containing both an open string and a string enum.
      * Known enum values retain their generated type; extension values remain
@@ -153,6 +234,16 @@ private static function encodeBody(mixed $body, string $contentType): ?string
         if ($body === SdkNotGiven::Value) {
             return null;
         }
+        $mediaType = strtolower(trim(explode(';', $contentType, 2)[0]));
+        if (in_array($mediaType, self::JSON_SEQUENCE_MEDIA_TYPES, true)) {
+            // One JSON record per line; a JSON text sequence also starts each with RS.
+            $separator = $mediaType === 'application/json-seq' ? "\x1E" : '';
+            $text = '';
+            foreach (is_array($body) && array_is_list($body) ? $body : [$body] as $record) {
+                $text .= $separator . json_encode(self::normalizeJson($record), JSON_THROW_ON_ERROR) . "\n";
+            }
+            return $text;
+        }
         if (str_contains(strtolower($contentType), 'json')) {
             return json_encode(self::normalizeJson($body), JSON_THROW_ON_ERROR);
         }
@@ -231,117 +322,5 @@ private static function scalarString(mixed $value): string
             return (string) $value;
         }
         return json_encode(self::normalizeJson($value), JSON_THROW_ON_ERROR);
-    }
-
-/**
-     * Builds schema-aware multipart data, including repeated file fields.
-     * @param array<string, mixed> $fields
-     */
-    private static function encodeMultipart(array $fields, string $boundary): string
-    {
-        $out = '';
-        $append = function (string $key, mixed $value) use (&$append, &$out, $boundary): void {
-            $contentType = null;
-            if ($value instanceof SdkMultipartPart) {
-                $contentType = $value->contentType;
-                $value = $value->value;
-            }
-            if ($value === SdkNotGiven::Value) {
-                return;
-            }
-            if (is_array($value) && array_is_list($value)) {
-                foreach ($value as $item) {
-                    $append($key, $item);
-                }
-                return;
-            }
-            $safeKey = addcslashes($key, "\\\"");
-            $disposition = "Content-Disposition: form-data; name=\"{$safeKey}\"";
-            if ($value instanceof SdkUploadFile) {
-                $safeFilename = addcslashes($value->filename, "\\\"");
-                $disposition .= "; filename=\"{$safeFilename}\"";
-                $contentType = $value->contentType;
-                $payload = $value->data;
-            } elseif (
-                $contentType !== null ||
-                is_array($value) ||
-                (is_object($value) && !($value instanceof \BackedEnum) && !($value instanceof SdkOpenEnum))
-            ) {
-                $contentType ??= 'application/json';
-                $payload = json_encode(self::normalizeJson($value), JSON_THROW_ON_ERROR);
-            } elseif ($value === null) {
-                $payload = 'null';
-            } else {
-                $payload = self::scalarString($value);
-            }
-            $out .= "--{$boundary}\r\n{$disposition}\r\n";
-            if ($contentType !== null) {
-                $out .= "Content-Type: {$contentType}\r\n";
-            }
-            $out .= "\r\n{$payload}\r\n";
-        };
-        foreach ($fields as $key => $value) {
-            $append((string) $key, $value);
-        }
-        $out .= "--{$boundary}--\r\n";
-        return $out;
-    }
-
-/**
-     * @param list<string> $headers
-     * @return array{status: int, headers: array<string, string>, body: string}
-     */
-    private static function dispatch(string $method, string $url, array $headers, ?string $body, float $timeout): array
-    {
-        if (function_exists('curl_init')) {
-            return self::dispatchCurl($method, $url, $headers, $body, $timeout);
-        }
-        return self::dispatchStream($method, $url, $headers, $body, $timeout);
-    }
-
-/**
-     * @param list<string> $headers
-     * @return array{status: int, headers: array<string, string>, body: string}
-     */
-    private static function dispatchCurl(string $method, string $url, array $headers, ?string $body, float $timeout): array
-    {
-        if ($url === '' || $method === '') {
-            throw new SdkNetworkError(new \InvalidArgumentException('HTTP method and URL must not be empty'));
-        }
-        $ch = curl_init();
-        if ($ch === false) {
-            throw new SdkNetworkError(new \RuntimeException('failed to initialise cURL'));
-        }
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HEADER, true);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
-        curl_setopt($ch, CURLOPT_TIMEOUT, (int) ceil($timeout));
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, (int) ceil($timeout));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-        if ($body !== null) {
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $body);
-        }
-
-        $response = curl_exec($ch);
-        $errno = curl_errno($ch);
-        $errMsg = curl_error($ch);
-        $statusCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $headerSize = (int) curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-
-        if ($errno === CURLE_OPERATION_TIMEDOUT) {
-            throw new SdkTimeoutError($timeout);
-        }
-        if ($errno !== 0 || !is_string($response)) {
-            throw new SdkNetworkError(new \RuntimeException("cURL error: {$errMsg}"));
-        }
-
-        $rawHeaders = substr($response, 0, $headerSize);
-        $bodyText = substr($response, $headerSize);
-        return [
-            'status' => $statusCode,
-            'headers' => self::parseHeaders($rawHeaders),
-            'body' => $bodyText,
-        ];
     }
 }

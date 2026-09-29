@@ -113,17 +113,15 @@ trait TemplatesMethodsPart1
     /**
      * Renders an HTML preview for a template identified by its integer ID. Supply `template_type` and `body` as form-encoded preview parameters.
      *
-     * renders the HTML preview of a template. id: The id value of the template you want to get. · templateType: type of template · body: template body
+     * renders the HTML preview of a template. id: The id value of the template you want to get.
      *
      * @param int $id
-     * @param string|SdkNotGiven $templateType
-     * @param string|SdkNotGiven $body
      * @return string
      */
-    public static function previewTemplateById(ClientConfig $clientConfig, int $id, string|SdkNotGiven $templateType = SdkNotGiven::Value, string|SdkNotGiven $body = SdkNotGiven::Value, ?RequestOptions $requestOptions = null): string
+    public static function previewTemplateById(ClientConfig $clientConfig, int $id, ?RequestOptions $requestOptions = null): string
     {
 
-        return SdkClient::stringValue(SdkClient::request('GET', "/templates/" . SdkClient::encodePathSegment($id) . "/preview", $clientConfig, body: ['template_type' => $templateType, 'body' => $body], contentType: 'application/x-www-form-urlencoded', decoder: 'text', operationId: 'previewTemplateById', requestOptions: $requestOptions)->data);
+        return SdkClient::stringValue(SdkClient::request('GET', "/templates/" . SdkClient::encodePathSegment($id) . "/preview", $clientConfig, decoder: 'text', operationId: 'previewTemplateById', requestOptions: $requestOptions)->data);
     }
 
 

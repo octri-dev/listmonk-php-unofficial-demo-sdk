@@ -32,6 +32,14 @@ class SdkClient
 
     private const IDEMPOTENT_METHODS = ['GET', 'HEAD', 'PUT', 'DELETE', 'OPTIONS'];
     private const ALWAYS_RETRYABLE = [429, 503];
+    private const JSON_SEQUENCE_MEDIA_TYPES = [
+        'application/x-ndjson',
+        'application/ndjson',
+        'application/jsonl',
+        'application/json-lines',
+        'application/x-jsonlines',
+        'application/json-seq',
+    ];
     private const REQUEST_ID_HEADERS = ['x-request-id', 'openai-request-id', 'x-amzn-requestid'];
     private const PII_KEYS = ["authorization", "cookie", "set_cookie", "setcookie", "password", "passcode", "secret", "token", "api_key", "apikey", "access_token", "accesstoken", "refresh_token", "refreshtoken", "client_secret", "clientsecret", "email", "email_address", "emailaddress", "phone", "phone_number", "phonenumber", "address", "street_address", "streetaddress", "street", "city", "postal_code", "postalcode", "zip_code", "zipcode", "first_name", "firstname", "last_name", "lastname", "full_name", "fullname", "username", "user_name", "ip", "ip_address", "ipaddress", "user_agent", "useragent", "referrer", "url", "uri", "query", "latitude", "longitude", "ssn", "social_security_number", "socialsecuritynumber", "tax_id", "taxid", "national_id", "nationalid", "passport_number", "passportnumber", "date_of_birth", "dateofbirth", "birth_date", "birthdate", "headers", "body", "request_headers", "requestheaders", "request_body", "requestbody"];
     /** Word runs matched anywhere inside a key (`billingEmail`, `stripe_secret_key`). */
